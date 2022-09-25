@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "stack.h"
-#include "Generals_func\generals.h"
 #include "log_info.h"
+
+static int Short_logs_ (int err, LOG_PARAMETS);
+
+static int Long_logs_  (Stack *stack, Stack_err stack_errors, LOG_PARAMETS);
 
 FILE *fp_logs = nullptr;
 
@@ -32,7 +34,7 @@ int Print_error_ (Stack *stack, Stack_err stack_errors, int err, LOG_PARAMETS)
 
 //=======================================================================================================
 
-int Long_logs_ (Stack *stack, Stack_err stack_errors, LOG_PARAMETS)
+static int Long_logs_ (Stack *stack, Stack_err stack_errors, LOG_PARAMETS)
 {
     time_t seconds = time (NULL) + 3 * 60* 60;
 
@@ -40,10 +42,10 @@ int Long_logs_ (Stack *stack, Stack_err stack_errors, LOG_PARAMETS)
 
     fprintf (fp_logs, "REFERENCE:\n");
 
-    fprintf (fp_logs, "struct variable created in file %s in function %s line %ld.\n", 
+    fprintf (fp_logs, "struct variable created in file %s in function %s line %d.\n", 
             stack->stack_info.origin_file,  stack->stack_info.origin_func, stack->stack_info.origin_line);
                        
-    fprintf (fp_logs, "Caused an error in file %s, function %s, line %ld\n\n", 
+    fprintf (fp_logs, "Caused an error in file %s, function %s, line %d\n\n", 
                 file_name, func_name, line);
 
     fprintf (fp_logs, "Error time: %s\n\n", asctime(gmtime(&seconds)));

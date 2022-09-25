@@ -4,12 +4,11 @@
 #include <math.h>
 #include <inttypes.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <assert.h>
 
-#include "Generals_func\generals.h"
 #include "log_info.h"
-#include "config.h"
 
 struct  Stack_info
 {
@@ -18,7 +17,7 @@ struct  Stack_info
     int origin_line = 0;
 };
 
-struct Stack
+struct Stack 
 {
     uint64_t canary_vall_begin = CANARY_VALL;
 
@@ -66,13 +65,19 @@ enum Stack_func_err{
     
 };
 
-static int Stack_check_ (Stack *stack, Stack_err *stack_errors);
+
 
 int Stack_dump (FILE *fpout, Stack *stack, Stack_err *stack_errors);
 
 int Stack_ctor (Stack *stack, int size, LOG_PARAMETS);
 
 int Stack_dtor (Stack *stack);
+
+
+
+int Stack_push (Stack *stack, elem_t  vall);
+
+int Stack_pop  (Stack *stack, elem_t *vall);
 
 static int Read_stack_info_ (Stack_info *stack_info, LOG_PARAMETS);
 
@@ -86,9 +91,7 @@ static int Increase_stack_capacity_ (Stack *stack);
 
 static int Decrease_stack_capacity_ (Stack *stack);
 
-int Stack_push (Stack *stack, elem_t  vall);
-
-int Stack_pop  (Stack *stack, elem_t *vall);
+static int Stack_check_ (Stack *stack, Stack_err *stack_errors);
 
 //=======================================================================================================
 
@@ -143,15 +146,15 @@ static int Stack_check_ (Stack *stack, Stack_err *stack_errors)
 
 int Stack_dump (FILE *fpout, Stack *stack, Stack_err *stack_errors)
 {
-    fprintf (fpout, "COUNT ERR: %ld\n\n", stack_errors->count_err);
+    fprintf (fpout, "COUNT ERR: %d\n\n", stack_errors->count_err);
 
     fprintf (fpout, "Stack pointer to data is |%p|\n\n", (char*)stack->data);
 
     fprintf (fpout, "Stack size_data = %ld\n", stack->size_data);
     fprintf (fpout, "Stack capacity = %ld\n",  stack->capacity);
 
-    fprintf (fpout, "Stack canary_vall_begin = %ld\n", stack->canary_vall_begin);
-    fprintf (fpout, "Stack canary_vall_end   = %ld\n", stack->canary_vall_end);
+    fprintf (fpout, "Stack canary_vall_begin = %hX\n", stack->canary_vall_begin);
+    fprintf (fpout, "Stack canary_vall_end   = %hX\n", stack->canary_vall_end);
 
     fprintf (fpout, "\n");
 
@@ -171,12 +174,12 @@ int Stack_dump (FILE *fpout, Stack *stack, Stack_err *stack_errors)
 
     if (!stack_errors->data_is_nullptr && !stack_errors->capacity_lower_zero && stack_errors->size_data_lower_zero)
     {
-        for (int id_elem = 0; id_elem < stack->capacity; id_elem)
+        for (int id_elem = 0; id_elem < stack->capacity; id_elem++)
         {
             if (id_elem < stack->size_data)
-                fprintf (fpout, "%5ld. *[%5lg]", id_elem, stack->data[id_elem]);
+                fprintf (fpout, "%5d. *[%5lg]", id_elem, stack->data[id_elem]);
             else
-                fprintf (fpout, "%5ld.  [%5lg]", id_elem, stack->data[id_elem]);
+                fprintf (fpout, "%5d.  [%5lg]", id_elem, stack->data[id_elem]);
         }
     }
 
@@ -415,7 +418,7 @@ int Stack_push (Stack *stack, elem_t vall)
         stack->data[stack->size_data++] = vall;
     else
     {
-        Stack_check_ (stack, &stack_errors)
+        Stack_check_ (stack, &stack_errors);
         Print_err (stack, stack_errors, STACK_PUSH_ERR);
         return STACK_PUSH_ERR;
     }
@@ -465,5 +468,7 @@ int Stack_pop (Stack *stack, elem_t *vall)
 }
 
 //=======================================================================================================
+
+
 
 #endif
