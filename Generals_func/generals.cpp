@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include <fcntl.h>
 
-#include "Generals.h"
+#include "generals.h"
 
 bool Equality_double (double num1, double num2){
     is_error (isfinite (num1));

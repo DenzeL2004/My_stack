@@ -1,8 +1,10 @@
 #ifndef _LOG_INFO_H_
 #define _LOG_INFO_H_
 
+#ifndef elem_t
+    #include "stack_type.h"
+#endif
 
-#include "Generals_func\generals.h"
 #include "log_def.h"
 #include "config.h"
 #include "stack.h"

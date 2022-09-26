@@ -2,6 +2,7 @@
 #include <time.h>
 
 #include "log_info.h"
+#include "Generals_func\generals.h"
 
 static int Short_logs_ (int err, LOG_PARAMETS);
 
@@ -15,9 +16,14 @@ int Open_logs_file ()
 {    
     fp_logs = Open_file_ptr ("logs_info.txt", "a");
 
-    if (!fp_logs){
-        fprintf (stderr, "Logs file does not open\n");
+    time_t seconds = time (NULL)  + 3 * 60* 60;;   
 
+    fprintf (fp_logs, "-------------Time open logs file: %s\n\n", 
+                    asctime(gmtime(&seconds))); 
+    
+    if (!fp_logs)
+    {
+        fprintf (stderr, "Logs file does not open\n");
         return ERR_FILE_OPEN;
     }
 
@@ -28,8 +34,10 @@ int Open_logs_file ()
 
 int Print_error_ (Stack *stack, Stack_err stack_errors, int err, LOG_PARAMETS)
 {
-    Short_logs_ (err, file_name, func_name, line);
-    Long_logs_  (stack, stack_errors, file_name, func_name, line);
+    Short_logs_ (err, LOG_VAR);
+    Long_logs_  (stack, stack_errors, LOG_VAR);
+
+    return 0;
 }
 
 //=======================================================================================================
@@ -46,7 +54,7 @@ static int Long_logs_ (Stack *stack, Stack_err stack_errors, LOG_PARAMETS)
             stack->stack_info.origin_file,  stack->stack_info.origin_func, stack->stack_info.origin_line);
                        
     fprintf (fp_logs, "Caused an error in file %s, function %s, line %d\n\n", 
-                file_name, func_name, line);
+                LOG_VAR);
 
     fprintf (fp_logs, "Error time: %s\n\n", asctime(gmtime(&seconds)));
 
@@ -79,8 +87,6 @@ static int Short_logs_ (int err, LOG_PARAMETS)
     fprintf (fp_logs, "Function returned an error value: %d\n", err);
     fprintf (fp_logs, "Error value: %s\n", Process_error (err));
     fprintf (fp_logs, "=================================================\n\n\n");
-
-
 
     return 0;                                                       
 }
@@ -136,11 +142,12 @@ int Close_logs_file ()
 {
     time_t seconds = time (NULL)  + 3 * 60* 60;;   
 
-    fprintf (fp_logs, "Time close logs file: %s\n\n", asctime(gmtime(&seconds))); 
+    fprintf (fp_logs, "-------------Time close logs file: %s\n\n", 
+                    asctime(gmtime(&seconds))); 
 
-    if (Close_file_ptr (fp_logs)){
+    if (Close_file_ptr (fp_logs))
+    {
         fprintf (stderr, "Logs file does not close\n");
-
         return ERR_FILE_OPEN;
     }
 

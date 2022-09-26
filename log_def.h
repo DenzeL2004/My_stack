@@ -7,4 +7,7 @@
 #define LOG_PARAMETS                                        \
     const char* file_name, const char* func_name, int line
 
+#define LOG_VAR                                             \
+    file_name, func_name, line
+
 #endif
