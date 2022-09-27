@@ -23,6 +23,8 @@ const char YELLOW[] =  "\033[1;33m";     ///< Yellow colour
 
 const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
 
+const int Hash_const = 239017;
+
 /**
  * @enum Errors
  * @brief Represents the status of errors
@@ -39,6 +41,11 @@ enum Errors {
     ERR_MANY_ARGUMENTS      = -9,          ///< Too many values on the command line
     ERR_PARSING             = -10,         ///< Parsing does not succeeded
     ERR_RE_ClEARING_MEMORY  = -13
+};
+
+enum Comparison{
+    DIFRENT = -1,
+    EQUAL   = 0
 };
 
 /**
@@ -80,6 +87,10 @@ bool Is_zero (double num);
  * @return Returns zero if the number is zero, otherwise returns the number itself
 */
 double Fix_zero (double num);
+
+int Bin_represent (FILE *fpout, size_t elem, size_t size_elem);
+
+int64_t Get_hash (char *data, unsigned int len);
 
 /** 
  * @brief Paints a line

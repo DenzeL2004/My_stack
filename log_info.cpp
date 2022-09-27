@@ -4,11 +4,9 @@
 #include "log_info.h"
 #include "Generals_func\generals.h"
 
-static int Short_logs_ (int err, LOG_PARAMETS);
-
-static int Long_logs_  (Stack *stack, Stack_err stack_errors, LOG_PARAMETS);
-
 FILE *fp_logs = nullptr;
+
+static char Can_print_stack (uint64_t err_code);
 
 //=======================================================================================================
 
@@ -32,42 +30,7 @@ int Open_logs_file ()
 
 //=======================================================================================================
 
-int Print_error_ (Stack *stack, Stack_err stack_errors, int err, LOG_PARAMETS)
-{
-    Short_logs_ (err, LOG_VAR);
-    Long_logs_  (stack, stack_errors, LOG_VAR);
-
-    return 0;
-}
-
-//=======================================================================================================
-
-static int Long_logs_ (Stack *stack, Stack_err stack_errors, LOG_PARAMETS)
-{
-    time_t seconds = time (NULL) + 3 * 60* 60;
-
-    fprintf (fp_logs, "=================================================\n\n");
-
-    fprintf (fp_logs, "REFERENCE:\n");
-
-    fprintf (fp_logs, "struct variable created in file %s in function %s line %d.\n", 
-            stack->stack_info.origin_file,  stack->stack_info.origin_func, stack->stack_info.origin_line);
-                       
-    fprintf (fp_logs, "Caused an error in file %s, function %s, line %d\n\n", 
-                LOG_VAR);
-
-    fprintf (fp_logs, "Error time: %s\n\n", asctime(gmtime(&seconds)));
-
-    Stack_dump (fp_logs, stack, &stack_errors);
-    
-    fprintf (fp_logs, "=================================================\n\n\n");
-
-    return 0;
-}
-
-//=======================================================================================================
-
-static int Short_logs_ (int err, LOG_PARAMETS) 
+int Print_error_ (int err, LOG_PARAMETS) 
 {    
     time_t seconds = time (NULL) + 3 * 60* 60;
 
@@ -128,12 +91,122 @@ const char* Process_error (int error)
         case STACK_DTOR_ERR:
             return "Failure to deconstruct a structure Stack";
 
+        case STACK_SAVE_HASH_ERR:
+            return "Failure to save hash to struct Stack";
+
         default:
             return "ACHTUNG!!! OMG!!! WTF!!! Unknown error\n";
             break;
     }       
 
     return "ACHTUNG!!! OMG!!! WTF!!! Unknown error\n";
+}
+
+//=======================================================================================================
+
+int Stack_dump_ (Stack *stack, LOG_PARAMETS)
+{
+    uint64_t err_code = Stack_check_ (stack);
+    if (!err_code) return 0;
+
+    time_t seconds = time (NULL) + 3 * 60* 60;
+
+    fprintf (fp_logs, "=================================================\n\n");
+
+    fprintf (fp_logs, "REFERENCE:\n");
+
+    fprintf (fp_logs, "Stack variable created in file %s in function %s line %d.\n", 
+            stack->stack_info.origin_file,  stack->stack_info.origin_func, stack->stack_info.origin_line);
+                       
+    fprintf (fp_logs, "Caused an error in file %s, function %s, line %d\n\n", LOG_VAR);
+
+    fprintf (fp_logs, "Error time: %s\n\n", asctime(gmtime(&seconds)));
+    
+    fprintf (fp_logs, "ERR CODE: ");
+    Bin_represent (fp_logs, err_code, sizeof (err_code));
+    fprintf (fp_logs, "\n");
+
+    fprintf (fp_logs, "Stack pointer to data is |%p|\n\n", (char*) stack->data);
+
+    fprintf (fp_logs, "Stack size_data = %ld\n", stack->size_data);
+    fprintf (fp_logs, "Stack capacity = %ld\n",  stack->capacity);
+
+    #ifdef CANARY_PROTECT
+        fprintf (fp_logs, "Stack canary vall begin = 0x%lluX\n", stack->canary_vall_begin);
+        fprintf (fp_logs, "Stack canary vall end   = 0x%lluX\n", stack->canary_vall_end);
+    #endif
+
+    #ifdef HASH 
+        fprintf (fp_logs, "Stack hash data = %llu\n", stack->hash_data);
+        fprintf (fp_logs, "Stack hash struct   = %llu\n", stack->canary_vall_end);
+    #endif
+
+    fprintf (fp_logs, "\n");
+
+    if (err_code & DATA_IS_NULLPTR) fprintf (fp_logs, "stack pointer data is nullptr.\n");
+    if (err_code & DATA_IS_POISON ) fprintf (fp_logs, "stack pointer data is poison vallue.\n");
+
+    fprintf (fp_logs, "\n");
+
+    if (err_code & SIZE_LOWER_ZERO)      fprintf (fp_logs, "stack size_data is a negative number.\n");
+    if (err_code & CAPACITY_LOWER_ZERO)  fprintf (fp_logs, "stack capacity is a negative number.\n");
+    if (err_code & CAPACITY_LOWER_SIZE)  fprintf (fp_logs, "stack capacity is lower size_data:\n");
+
+    fprintf (fp_logs, "\n");
+    
+    #ifdef CANARY_PROTECT
+        if (err_code & CANARY_CURUPTED) fprintf (fp_logs, "stack canary_begin is currupted.\n");
+    #endif
+
+    if (Can_print_stack (err_code))
+    {
+        for (int id_elem = 0; id_elem < stack->capacity; id_elem++)
+        {
+            if (id_elem < stack->size_data)
+                fprintf (fp_logs, "%5d. *[%" PRINT_TYPE "]\n", id_elem, stack->data[id_elem]);
+            else
+                fprintf (fp_logs, "%5d.  [%" PRINT_TYPE "] is POISON\n", id_elem, stack->data[id_elem]);
+        }
+    }
+
+    fprintf (fp_logs, "=================================================\n\n");
+
+    return 0;
+}
+
+//=======================================================================================================
+
+uint64_t Stack_check_ (Stack *stack)
+{
+    uint64_t err_code = 0;
+
+    if (stack->data == nullptr)              err_code |= DATA_IS_NULLPTR;
+    if (stack->data == (elem_t*) POISON_PTR) err_code |= DATA_IS_POISON;
+    
+    if (stack->size_data < 0) err_code |= SIZE_LOWER_ZERO;
+    if (stack->capacity  < 0) err_code |= CAPACITY_LOWER_ZERO;
+
+    if (stack->capacity < stack->size_data) err_code |= CAPACITY_LOWER_SIZE;
+    
+    #ifdef CANARY_PROTECT
+        if (stack->canary_vall_begin != CANARY_VALL || stack->canary_vall_end != CANARY_VALL)
+            err_code |= CANARY_CURUPTED;
+    #endif
+
+    #ifdef HASH
+        if (Check_hash_data (stack))   err_code |= HASH_DATA_CURUPTED;
+        if (Check_hash_struct (stack)) err_code |= HASH_STRUCT_CURUPTED;
+    #endif
+
+    return err_code;    
+}
+
+//=======================================================================================================
+
+static char Can_print_stack (uint64_t err_code)
+{
+    return !((err_code & DATA_IS_NULLPTR) || (err_code & DATA_IS_POISON) || 
+             (err_code & SIZE_LOWER_ZERO) || (err_code & CAPACITY_LOWER_ZERO));
 }
 
 //=======================================================================================================

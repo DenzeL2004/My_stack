@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <time.h>
 #include <assert.h>
 
 #ifndef elem_t
@@ -15,19 +16,29 @@
 #include "config.h"
 #include "stack.h"
 
-static int Read_stack_info_ (Stack_info *stack_info, LOG_PARAMETS);
+#ifdef HASH
+
+    #define Stack_hash_save(stack)         \
+        Stack_hash_save_ (stack)
+#else
+
+    #define Stack_hash_save(stack)         \
+
+#endif
+
+static int Read_stack_info_  (Stack_info *stack_info, LOG_PARAMETS);
 
 static int Init_stack_valls_ (Stack *stack);
 
 static int Init_stack_info_  (Stack_info *stack_info);
+
+static int Stack_hash_save_  (Stack *stack);
 
 static int Recalloc_stack_          (Stack *stack, int mode);
 
 static int Increase_stack_capacity_ (Stack *stack);
 
 static int Decrease_stack_capacity_ (Stack *stack);
-
-static int Stack_check_ (Stack *stack, Stack_err *stack_errors);
 
 //=======================================================================================================
 
@@ -49,7 +60,7 @@ int Stack_ctor_ (Stack *stack, int size, LOG_PARAMETS)
         printf ("YOU'RE SERIOUS!!!\nNON-POSITIVE SIZE?. "
                 "Memory will be allocated, but please don't do that again. -_- \n");
     }
-
+    
     int _size = size;
     if (_size < MIN_SIZE_CAPACITY) _size = MIN_SIZE_CAPACITY;
 
@@ -59,15 +70,18 @@ int Stack_ctor_ (Stack *stack, int size, LOG_PARAMETS)
     stack->capacity  = _size; 
 
     Init_stack_valls_ (stack);
-    
-    Stack_err stack_errors = {0};
 
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, STACK_CTOR_ERR);
-        return STACK_CTOR_ERR;
-    }
+    #ifdef CANARY_PROTECT
+        stack->canary_vall_begin = CANARY_VALL;
+        stack->canary_vall_end   = CANARY_VALL;
+    #endif
+
+    #ifdef HASH
+        Stack_hash_save (stack);
+    #endif
     
+    Stack_check (stack, STACK_CTOR_ERR);
+
     return 0;
 }
 
@@ -81,13 +95,7 @@ int Stack_dtor (Stack *stack)
         return 0;
     }
 
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, STACK_DTOR_ERR);
-        return STACK_DTOR_ERR;
-    }
+    Stack_check (stack, STACK_DTOR_ERR);
 
     Init_stack_valls_ (stack);
 
@@ -97,13 +105,90 @@ int Stack_dtor (Stack *stack)
     stack->size_data = 0;
     stack->capacity  = 0;
 
-    stack->canary_vall_begin = 0;
-    stack->canary_vall_end   = 0;
+    #ifdef CANARY_PROTECT
+        stack->canary_vall_begin = 0;
+        stack->canary_vall_end   = 0;
+    #endif
+
+    #ifdef HASH
+        stack->hash_data   = 0;
+        stack->hash_struct = 0;
+    #endif
 
     Init_stack_info_ (&stack->stack_info);
     
     return 0;
 }
+
+//=======================================================================================================
+
+#ifdef HASH
+
+static int Stack_hash_save_ (Stack *stack)
+{
+    size_t size_struct = sizeof (*stack) - 2*sizeof (uint64_t);
+
+    #ifdef CANARY_PROTECT
+        size_struct -= sizeof (uint64_t);
+    #endif
+
+    stack->hash_struct = Get_hash ((char*) stack, size_struct);
+
+    size_t size_data = stack->capacity * sizeof (elem_t);
+
+    stack->hash_data = Get_hash ((char*) stack->data, size_data);
+
+    Stack_check (stack, STACK_SAVE_HASH_ERR);
+
+    return 0;
+}
+
+#endif
+
+//=======================================================================================================
+
+#ifdef HASH
+
+int Check_hash_data (Stack *stack)
+{
+    if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR) 
+    {
+        int size_data = stack->capacity * sizeof (elem_t);
+
+        uint64_t hash = Get_hash ((char*) stack->data, (unsigned int) size_data);
+
+        if (hash == stack->hash_data) 
+            return EQUAL;
+        else
+            return DIFRENT;
+    }
+
+    return DIFRENT;
+}
+
+#endif
+
+//=======================================================================================================
+
+#ifdef HASH
+
+int Check_hash_struct (Stack *stack)
+{
+    int size_struct = sizeof (*stack) - 2*sizeof (uint64_t);
+
+    #ifdef CANARY_PROTECT
+        size_struct -= sizeof (uint64_t);
+    #endif
+
+    uint64_t hash = Get_hash ((char*) stack, (unsigned int) size_struct);
+
+    if (hash == stack->hash_struct) 
+        return EQUAL;
+    else
+        return DIFRENT;
+}
+
+#endif
 
 //=======================================================================================================
 
@@ -138,11 +223,10 @@ static int Init_stack_info_ (Stack_info *stack_info)
 
 static int Init_stack_valls_ (Stack *stack)
 {
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, INIT_STACK_VALLS_ERR);
+    if (stack->data == nullptr || stack->data == (elem_t*) POISON_PTR)
+    {
+        Print_err (INIT_STACK_VALLS_ERR);
+        Stack_dump (stack);
         return INIT_STACK_VALLS_ERR;
     }
 
@@ -156,13 +240,7 @@ static int Init_stack_valls_ (Stack *stack)
 
 static int Recalloc_stack_(Stack *stack, int mode)
 {
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, REALLOC_STACK_ERR);
-        return REALLOC_STACK_ERR;
-    } 
+    Stack_check (stack, REALLOC_STACK_ERR); 
 
     if (mode == INCREASE)
         return Increase_stack_capacity_ (stack);
@@ -177,27 +255,17 @@ static int Recalloc_stack_(Stack *stack, int mode)
 
 static int Increase_stack_capacity_ (Stack *stack)
 {
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, INCREASE_STACK_ERR);
-        return INCREASE_STACK_ERR;
-    } 
+    Stack_check (stack, INCREASE_STACK_ERR);
 
     if (stack->size_data != stack->capacity) return 0;
 
     stack->capacity *= 2;
 
-    stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity);
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, INCREASE_STACK_ERR);
-        return INCREASE_STACK_ERR;
-    } 
+    stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity); 
 
     Init_stack_valls_ (stack);
+
+    Stack_hash_save (stack);
 
     return 0;    
 }
@@ -206,13 +274,7 @@ static int Increase_stack_capacity_ (Stack *stack)
 
 static int Decrease_stack_capacity_ (Stack *stack)
 {
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, DECREASE_STACK_ERR);
-        return DECREASE_STACK_ERR;
-    }
+    Stack_check (stack, DECREASE);
 
     if (stack->capacity     <= MIN_SIZE_CAPACITY) return 0;
 
@@ -224,11 +286,7 @@ static int Decrease_stack_capacity_ (Stack *stack)
     
     Init_stack_valls_ (stack);
 
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, DECREASE_STACK_ERR);
-        return DECREASE_STACK_ERR;
-    }
+    Stack_hash_save (stack);
 
     return 0;
 }
@@ -243,23 +301,19 @@ int Stack_push (Stack *stack, elem_t vall)
         return 0;
     }
 
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, STACK_PUSH_ERR);
-        return STACK_PUSH_ERR;
-    }
+    Stack_check (stack, STACK_PUSH_ERR);
 
     if (!Recalloc_stack_(stack, INCREASE)){
         stack->data[stack->size_data++] = vall;
     }
     else
     {
-        Stack_check_ (stack, &stack_errors);
-        Print_err (stack, stack_errors, STACK_PUSH_ERR);
+        Print_err (STACK_PUSH_ERR);
+        Stack_dump (stack);
         return STACK_PUSH_ERR;
     }
+
+    Stack_hash_save (stack);
 
     return 0;
 }
@@ -273,13 +327,7 @@ int Stack_pop (Stack *stack, elem_t *vall)
         return 0;
     }
 
-    Stack_err stack_errors = {0};
-
-    if (Stack_check_ (stack, &stack_errors))
-    { 
-        Print_err (stack, stack_errors, STACK_POP_ERR);
-        return STACK_POP_ERR;
-    }
+    Stack_check (stack, STACK_POP_ERR);
 
     if (stack->size_data == 0)
     {
@@ -297,109 +345,14 @@ int Stack_pop (Stack *stack, elem_t *vall)
     }
     else
     {
-        Stack_check_ (stack, &stack_errors);
-        Print_err (stack, stack_errors, STACK_POP_ERR);
+        Print_err (STACK_POP_ERR);
+        Stack_dump (stack);
         return STACK_POP_ERR;
     }
 
-    return 0;
-}
-
-//=======================================================================================================
-
-static int Stack_check_ (Stack *stack, Stack_err *stack_errors)
-{
-    if (stack->data == nullptr)
-    {
-        stack_errors->data_is_nullptr = true;
-        stack_errors->count_err++;
-    }
-
-    if (stack->data == (elem_t*) POISON_PTR)
-    {
-        stack_errors->data_is_poison = true;
-        stack_errors->count_err++;
-    }
-
-    if (stack->size_data < 0)
-    {
-        stack_errors->size_data_lower_zero = true;
-        stack_errors->count_err++;
-    }
-
-    if (stack->capacity < 0)
-    {
-        stack_errors->capacity_lower_zero = true;
-        stack_errors->count_err++;
-    }
-
-    if (stack->capacity < stack->size_data)
-    {
-        stack_errors->capacity_lower_size = true;
-        stack_errors->count_err++;
-    }
-
-    if (stack->canary_vall_begin != CANARY_VALL)
-    {
-        stack_errors->canary_begin_curupted = true;
-        stack_errors->count_err++;
-    }
-
-    if (stack->canary_vall_end != CANARY_VALL)
-    {
-        stack_errors->canary_end_curupted = true;
-        stack_errors->count_err++;
-    }
-
-    return stack_errors->count_err;    
-}
-
-//=======================================================================================================
-
-int Stack_dump (FILE *fpout, Stack *stack, Stack_err *stack_errors)
-{
-    fprintf (fpout, "COUNT ERR: %d\n\n", stack_errors->count_err);
-
-    fprintf (fpout, "Stack pointer to data is |%p|\n\n", (char*)stack->data);
-
-    fprintf (fpout, "Stack size_data = %ld\n", stack->size_data);
-    fprintf (fpout, "Stack capacity = %ld\n",  stack->capacity);
-
-    fprintf (fpout, "Stack canary_vall_begin = %llX\n", stack->canary_vall_begin);
-    fprintf (fpout, "Stack canary_vall_end   = %llX\n", stack->canary_vall_end);
-
-    fprintf (fpout, "\n");
-
-    if (stack_errors->data_is_nullptr) fprintf (fpout, "stack pointer data is nullptr.\n");
-    if (stack_errors->data_is_poison ) fprintf (fpout, "stack pointer data is poison vallue.\n");
-
-    fprintf (fpout, "\n");
-
-    if (stack_errors->size_data_lower_zero) fprintf (fpout, "stack size_data is a negative number.\n");
-    if (stack_errors->capacity_lower_zero)  fprintf (fpout, "stack capacity is a negative number.\n");
-    if (stack_errors->capacity_lower_size)  fprintf (fpout, "stack capacity is lower size_data:\n");
-
-    fprintf (fpout, "\n");
-    
-    if (stack_errors->canary_begin_curupted) fprintf (fpout, "stack canary_begin is currupted.\n");
-    if (stack_errors->canary_end_curupted  ) fprintf (fpout, "stack canary_end is currupted.\n");
-
-    if (!stack_errors->data_is_nullptr && !stack_errors->capacity_lower_zero && !stack_errors->size_data_lower_zero)
-    {
-        for (int id_elem = 0; id_elem < stack->capacity; id_elem++)
-        {
-            if (id_elem < stack->size_data)
-                fprintf (fpout, "%5d. *[%" PRINT_TYPE "]\n", id_elem, stack->data[id_elem]);
-            else
-                fprintf (fpout, "%5d.  [%" PRINT_TYPE "] id POISON\n", id_elem, stack->data[id_elem]);
-        }
-    }
+    Stack_hash_save (stack);
 
     return 0;
 }
 
 //=======================================================================================================
-
-
-
-

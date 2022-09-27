@@ -3,7 +3,9 @@
 
 #define USE_LOG
 
-#define TYPE_VALl lg
+#define HASH
+
+#define CANARY_PROTECT 
 
 #define CANARY_VALL 0xDEADBABEDEADBABE
 

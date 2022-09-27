@@ -31,6 +31,33 @@ double Fix_zero (double num){
     return num;
 }
 
+int Bin_represent(FILE *fpout, size_t elem, size_t size_elem)
+{
+    for (size_t num_bit = size_elem; num_bit > 0; --num_bit) {
+        fprintf(fpout, "%d", (elem & (1 << (num_bit-1))) ? 1 : 0);
+    }
+
+    return 0;
+}
+
+int64_t Get_hash (char *data, size_t len) 
+{
+    uint64_t hash = 0;
+
+    for (uint64_t num_bit = 0; num_bit < len; num_bit++) 
+    {
+        hash += data[num_bit];
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+	}
+
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
+    
+    return hash;
+}
+
 void Print_colour (char const colour[], char const *str, ...){
     printf ("%s", colour);
 

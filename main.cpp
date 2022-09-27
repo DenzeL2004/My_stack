@@ -14,7 +14,7 @@ int main()
    #ifdef USE_LOG
       Open_logs_file ();
    #endif
-
+   
    Stack stack = {};
 
    Stack_ctor (&stack, 10);
@@ -29,14 +29,16 @@ int main()
          Stack_pop (&stack, &last_stack_val);
 
          printf ("last stack val = %" PRINT_TYPE "\n", last_stack_val);
-         printf ("capacity = %ld, size = %ld\n", stack.capacity, stack.size_data);
       } 
       else
       {
          Stack_push(&stack, val);
-         printf ("capacity = %ld, size = %ld\n", stack.capacity, stack.size_data);
       }
    }
+
+   Stack_dump (&stack);
+
+   Stack_dtor (&stack);
 
    #ifdef USE_LOG
       Close_logs_file ();
