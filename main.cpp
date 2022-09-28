@@ -18,6 +18,7 @@ int main()
    Stack stack = {};
 
    Stack_ctor (&stack, 10);
+   // check ret val
 
    for (int count = 0; count < N; count++) 
    {

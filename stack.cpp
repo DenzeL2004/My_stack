@@ -55,21 +55,22 @@ int Stack_ctor_ (Stack *stack, int size, LOG_PARAMETS)
     Init_stack_info_ (&stack->stack_info);
     Read_stack_info_ (&(stack->stack_info), LOG_VAR);
 
-    if (size <= 0)
+    if (size <= 0) //
     {
         printf ("YOU'RE SERIOUS!!!\nNON-POSITIVE SIZE?. "
                 "Memory will be allocated, but please don't do that again. -_- \n");
     }
     
-    int _size = size;
+    int _size = size; // 
     if (_size < MIN_SIZE_CAPACITY) _size = MIN_SIZE_CAPACITY;
 
     stack->data = (elem_t*) calloc (size, sizeof(elem_t));
+    //
 
     stack->size_data = 0;
     stack->capacity  = _size; 
 
-    Init_stack_valls_ (stack);
+    Init_stack_valls_ (stack);// stack_value_set_zero_
 
     #ifdef CANARY_PROTECT
         stack->canary_vall_begin = CANARY_VALL;
@@ -126,7 +127,7 @@ int Stack_dtor (Stack *stack)
 
 static int Stack_hash_save_ (Stack *stack)
 {
-    size_t size_struct = sizeof (*stack) - 2*sizeof (uint64_t);
+    size_t size_struct = sizeof (Stack) - 2*sizeof (uint64_t);
 
     #ifdef CANARY_PROTECT
         size_struct -= sizeof (uint64_t);
@@ -138,8 +139,6 @@ static int Stack_hash_save_ (Stack *stack)
 
     stack->hash_data = Get_hash ((char*) stack->data, size_data);
 
-    Stack_check (stack, STACK_SAVE_HASH_ERR);
-
     return 0;
 }
 
@@ -149,7 +148,7 @@ static int Stack_hash_save_ (Stack *stack)
 
 #ifdef HASH
 
-int Check_hash_data (Stack *stack)
+int Check_hash_data (const Stack *stack)
 {
     if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR) 
     {
@@ -157,7 +156,7 @@ int Check_hash_data (Stack *stack)
 
         uint64_t hash = Get_hash ((char*) stack->data, (unsigned int) size_data);
 
-        if (hash == stack->hash_data) 
+        if (hash == stack->hash_data) //
             return EQUAL;
         else
             return DIFRENT;
@@ -174,7 +173,7 @@ int Check_hash_data (Stack *stack)
 
 int Check_hash_struct (Stack *stack)
 {
-    int size_struct = sizeof (*stack) - 2*sizeof (uint64_t);
+    int size_struct = sizeof (*stack) - 2 * sizeof (uint64_t);
 
     #ifdef CANARY_PROTECT
         size_struct -= sizeof (uint64_t);
@@ -183,7 +182,7 @@ int Check_hash_struct (Stack *stack)
     uint64_t hash = Get_hash ((char*) stack, (unsigned int) size_struct);
 
     if (hash == stack->hash_struct) 
-        return EQUAL;
+        return EQUAL;   //
     else
         return DIFRENT;
 }
@@ -192,7 +191,7 @@ int Check_hash_struct (Stack *stack)
 
 //=======================================================================================================
 
-static int Read_stack_info_ (Stack_info *stack_info, LOG_PARAMETS)
+static int Read_stack_info_ (Stack_info *stack_info, LOG_PARAMETS) //
 {
     assert (stack_info != nullptr && "stack_info in function Get_stack_info is nullptr");
 
@@ -221,7 +220,7 @@ static int Init_stack_info_ (Stack_info *stack_info)
 
 //=======================================================================================================
 
-static int Init_stack_valls_ (Stack *stack)
+static int Init_stack_valls_ (Stack *stack) //
 {
     if (stack->data == nullptr || stack->data == (elem_t*) POISON_PTR)
     {
@@ -238,15 +237,17 @@ static int Init_stack_valls_ (Stack *stack)
 
 //=======================================================================================================
 
-static int Recalloc_stack_(Stack *stack, int mode)
+static int Recalloc_stack_(Stack *stack, int mode) // resize(.., option)
 {
-    Stack_check (stack, REALLOC_STACK_ERR); 
+    Stack_check (stack, REALLOC_STACK_ERR);
 
     if (mode == INCREASE)
-        return Increase_stack_capacity_ (stack);
+        return Increase_stack_capacity_ (stack);      //recalloc
 
     if (mode == DECREASE)
-        return Decrease_stack_capacity_ (stack);
+        return Decrease_stack_capacity_ (stack);     // recalloc
+
+    //
 
     return 0;
 }
@@ -280,7 +281,7 @@ static int Decrease_stack_capacity_ (Stack *stack)
 
     if (stack->capacity / 4 <= stack->size_data ) return 0;
     
-    stack->capacity /= 2;
+    stack->capacity /= 2; //-> increase_step
 
     stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity);
     

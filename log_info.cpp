@@ -4,7 +4,7 @@
 #include "log_info.h"
 #include "Generals_func\generals.h"
 
-FILE *fp_logs = nullptr;
+static FILE *fp_logs = nullptr;
 
 static char Can_print_stack (uint64_t err_code);
 
@@ -42,7 +42,8 @@ int Print_error_ (int err, LOG_PARAMETS)
     fprintf (fp_logs, "Something went wrong the way you wanted\n\n");
 
     fprintf (fp_logs, "Error time: %s\n", asctime(gmtime(&seconds)));
-    
+    //
+
     fprintf (fp_logs, "In file %s\n", file_name);
     fprintf (fp_logs, "In function %s\n", func_name);
     fprintf (fp_logs, "In line %d\n\n", line);

@@ -3,11 +3,24 @@
 
 #define USE_LOG
 
+#define DEBUG
+
+// #ifdef DEBUG
+
+//     #define CANARY
+
+//     #ifdef CANARY
+
+//     #
+
+// #endif
+
 #define HASH
 
+//
 #define CANARY_PROTECT 
 
-#define CANARY_VALL 0xDEADBABEDEADBABE
+#define CANARY_VALL 0xDEADBABEDEADBABE //
 
 #define POISON_VALL (228) 
 
@@ -17,7 +30,6 @@
 
 #define MAX_SIZE_BUF 50
 
-#define MIN_SIZE_CAPACITY 10
-
+#define MIN_SIZE_CAPACITY 10 //
 
 #endif
