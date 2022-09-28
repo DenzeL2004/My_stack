@@ -42,7 +42,7 @@ static int Decrease_stack_capacity_ (Stack *stack);
 
 //=======================================================================================================
 
-int Stack_ctor_ (Stack *stack, int size, LOG_PARAMETS)
+int Stack_ctor_ (Stack *stack, unsigned long size, LOG_PARAMETS)
 {
     if (stack->data == (elem_t*) POISON_PTR)
     {
@@ -157,12 +157,12 @@ int Check_hash_data (const Stack *stack)
         uint64_t hash = Get_hash ((char*) stack->data, (unsigned int) size_data);
 
         if (hash == stack->hash_data) //
-            return EQUAL;
+            return 0;
         else
-            return DIFRENT;
+            return 1;
     }
 
-    return DIFRENT;
+    return 1;
 }
 
 #endif
@@ -182,9 +182,9 @@ int Check_hash_struct (Stack *stack)
     uint64_t hash = Get_hash ((char*) stack, (unsigned int) size_struct);
 
     if (hash == stack->hash_struct) 
-        return EQUAL;   //
+        return 0;   
     else
-        return DIFRENT;
+        return 1;
 }
 
 #endif
