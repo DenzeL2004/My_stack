@@ -1,35 +1,36 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#define USE_LOG
+#include <stdlib.h>
 
-#define DEBUG
+typedef int elem_t;
 
-// #ifdef DEBUG
+#define USE_LOG //<- logging errors
 
-//     #define CANARY
+#define DEBUG   //<- use of protection
 
-//     #ifdef CANARY
+#ifdef DEBUG
 
-//     #
+    #define CANARY_PROTECT //<- use of canary protection
 
-// #endif
+    #ifdef CANARY_PROTECT
+        const unsigned long long CANARY_VAL = 0xDEADBABEDEADBABE;
+    #endif
 
-#define HASH
+    #define HASH           //<- use of hash protection
 
-//
-#define CANARY_PROTECT 
+#endif
 
-#define CANARY_VALL 0xDEADBABEDEADBABE //
+const elem_t POISON_VAL = 228;      //<- poison value
 
-#define POISON_VALL (228) 
+const elem_t POISON_PTR = 4242564;  //<- poison ptr
+
+const elem_t NOT_ALLOC_PTR = 666666;
 
 #define PRINT_TYPE "d"
 
-#define POISON_PTR (4242564) //death death murder
-
 #define MAX_SIZE_BUF 50
 
-#define MIN_SIZE_CAPACITY 10 //
+#define MIN_SIZE_CAPACITY 10 
 
 #endif

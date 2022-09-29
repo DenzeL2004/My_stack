@@ -6,12 +6,9 @@
 #include <time.h>
 #include <assert.h>
 
-#ifndef elem_t
-    #include "stack_type.h"
-#endif
-
 #include "Generals_func\generals.h"
-#include "log_info.h"
+#include "stack_log_errors.h"
+#include "log_errors.h"
 #include "log_def.h"
 #include "config.h"
 #include "stack.h"
@@ -26,13 +23,13 @@
 
 #endif
 
-static int Read_stack_info_  (Stack_info *stack_info, LOG_PARAMETS);
+static int Stack_info_ctor_  (Stack_info *stack_info, LOG_PARAMETS);
 
-static int Init_stack_valls_ (Stack *stack);
-
-static int Init_stack_info_  (Stack_info *stack_info);
+static int Stack_info_dtor_  (Stack_info *stack_info);
 
 static int Stack_hash_save_  (Stack *stack);
+
+static int Stack_vals_poison_set_ (Stack *stack);
 
 static int Recalloc_stack_          (Stack *stack, int mode);
 
@@ -42,46 +39,30 @@ static int Decrease_stack_capacity_ (Stack *stack);
 
 //=======================================================================================================
 
-int Stack_ctor_ (Stack *stack, unsigned long size, LOG_PARAMETS)
-{
-    if (stack->data == (elem_t*) POISON_PTR)
-    {
-        printf ("Sorry, but the memory stack is already free.\n");
-        return 0;
-    }
-
+int Stack_ctor_ (Stack *stack, unsigned long capacity, const char* file_name, const char* func_name, int line)
+{ 
     stack->stack_info = {};
-    
-    Init_stack_info_ (&stack->stack_info);
-    Read_stack_info_ (&(stack->stack_info), LOG_VAR);
+    Stack_info_ctor_ (&stack->stack_info, LOG_VAR);
 
-    if (size <= 0) //
-    {
-        printf ("YOU'RE SERIOUS!!!\nNON-POSITIVE SIZE?. "
-                "Memory will be allocated, but please don't do that again. -_- \n");
-    }
-    
-    int _size = size; // 
-    if (_size < MIN_SIZE_CAPACITY) _size = MIN_SIZE_CAPACITY;
-
-    stack->data = (elem_t*) calloc (size, sizeof(elem_t));
-    //
+    stack->data = (elem_t*) NOT_ALLOC_PTR;
 
     stack->size_data = 0;
-    stack->capacity  = _size; 
-
-    Init_stack_valls_ (stack);// stack_value_set_zero_
+    stack->capacity  = capacity; 
 
     #ifdef CANARY_PROTECT
-        stack->canary_vall_begin = CANARY_VALL;
-        stack->canary_vall_end   = CANARY_VALL;
+        stack->canary_val_begin = CANARY_VAL;
+        stack->canary_val_end   = CANARY_VAL;
     #endif
 
     #ifdef HASH
         Stack_hash_save (stack);
     #endif
     
-    Stack_check (stack, STACK_CTOR_ERR);
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return STACK_CTOR_ERR;
+    }
 
     return 0;
 }
@@ -90,15 +71,15 @@ int Stack_ctor_ (Stack *stack, unsigned long size, LOG_PARAMETS)
 
 int Stack_dtor (Stack *stack)
 {   
-    if (stack->data == (elem_t*) POISON_PTR)
+    if (Stack_data_ptr_check (stack, LOG_ARGS)) return STACK_CTOR_ERR; 
+
+    if (Stack_check (stack))
     {
-        printf ("Sorry, but the memory stack is already free.\n");
-        return 0;
+        Stack_dump (stack);
+        return STACK_DTOR_ERR;
     }
 
-    Stack_check (stack, STACK_DTOR_ERR);
-
-    Init_stack_valls_ (stack);
+    Stack_vals_poison_set_ (stack);
 
     free (stack->data);
     stack->data = (elem_t*) POISON_PTR;
@@ -106,17 +87,45 @@ int Stack_dtor (Stack *stack)
     stack->size_data = 0;
     stack->capacity  = 0;
 
-    #ifdef CANARY_PROTECT
-        stack->canary_vall_begin = 0;
-        stack->canary_vall_end   = 0;
-    #endif
+    Stack_info_dtor_ (&stack->stack_info);
+    
+    return 0;
+}
 
-    #ifdef HASH
-        stack->hash_data   = 0;
-        stack->hash_struct = 0;
-    #endif
+//=======================================================================================================
 
-    Init_stack_info_ (&stack->stack_info);
+static int Stack_info_ctor_ (Stack_info *stack_info, const char* file_name, const char* func_name, int line) 
+{
+    if (stack_info == nullptr)
+    {
+        Log_report (LOG_ARGS, "Ptr on struct stack_info is nullptr\n");
+        return STACK_INFO_CTOR_ERR;
+    }
+
+    stack_info->origin_line = line;
+    stack_info->origin_file = strdup (file_name);
+    stack_info->origin_func = strdup (func_name);
+    
+    return 0;
+}
+
+//=======================================================================================================
+
+static int Stack_info_dtor_ (Stack_info *stack_info) 
+{
+    if (stack_info == nullptr)
+    {
+        Log_report (LOG_ARGS, "Ptr on struct stack_info is nullptr\n");
+        return STACK_INFO_CTOR_ERR;
+    }
+
+    stack_info->origin_line = -1;
+    
+    free(stack_info->origin_file);
+    stack_info->origin_file = (char*) POISON_PTR;
+
+    free(stack_info->origin_func);
+    stack_info->origin_func = (char*) POISON_PTR;
     
     return 0;
 }
@@ -127,7 +136,7 @@ int Stack_dtor (Stack *stack)
 
 static int Stack_hash_save_ (Stack *stack)
 {
-    size_t size_struct = sizeof (Stack) - 2*sizeof (uint64_t);
+    size_t size_struct = sizeof (*stack) - 2*sizeof (uint64_t);
 
     #ifdef CANARY_PROTECT
         size_struct -= sizeof (uint64_t);
@@ -171,7 +180,7 @@ int Check_hash_data (const Stack *stack)
 
 #ifdef HASH
 
-int Check_hash_struct (Stack *stack)
+int Check_hash_struct (const Stack *stack)
 {
     int size_struct = sizeof (*stack) - 2 * sizeof (uint64_t);
 
@@ -191,46 +200,17 @@ int Check_hash_struct (Stack *stack)
 
 //=======================================================================================================
 
-static int Read_stack_info_ (Stack_info *stack_info, LOG_PARAMETS) //
-{
-    assert (stack_info != nullptr && "stack_info in function Get_stack_info is nullptr");
-
-    stack_info->origin_line = line;
-
-    strncpy (stack_info->origin_file, file_name, MAX_SIZE_BUF);
-    strncpy (stack_info->origin_func, func_name, MAX_SIZE_BUF);
-
-    return 0;
-}
-
-//=======================================================================================================
-
-static int Init_stack_info_ (Stack_info *stack_info)
-{
-    assert (stack_info != nullptr && "stack_info in function Get_stack_info is nullptr");
-
-    stack_info->origin_line = 0;
-    for (int id_char = 0; id_char < MAX_SIZE_BUF; id_char++){
-        stack_info->origin_file[id_char] = '\0';
-        stack_info->origin_func[id_char] = '\0';
-    }
-
-    return 0;
-}
-
-//=======================================================================================================
-
-static int Init_stack_valls_ (Stack *stack) //
+static int Stack_vals_poison_set_ (Stack *stack)
 {
     if (stack->data == nullptr || stack->data == (elem_t*) POISON_PTR)
     {
-        Print_err (INIT_STACK_VALLS_ERR);
+        Log_report (LOG_ARGS, "Stack vals don't assigned\n");
         Stack_dump (stack);
         return INIT_STACK_VALLS_ERR;
     }
 
     for (int id_elem = stack->size_data; id_elem < stack->capacity; id_elem++)
-        stack->data[id_elem] = POISON_VALL;
+        stack->data[id_elem] = POISON_VAL;
 
     return 0;
 }
@@ -239,7 +219,11 @@ static int Init_stack_valls_ (Stack *stack) //
 
 static int Recalloc_stack_(Stack *stack, int mode) // resize(.., option)
 {
-    Stack_check (stack, REALLOC_STACK_ERR);
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return REALLOC_STACK_ERR;
+    }
 
     if (mode == INCREASE)
         return Increase_stack_capacity_ (stack);      //recalloc
@@ -256,7 +240,11 @@ static int Recalloc_stack_(Stack *stack, int mode) // resize(.., option)
 
 static int Increase_stack_capacity_ (Stack *stack)
 {
-    Stack_check (stack, INCREASE_STACK_ERR);
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return INCREASE_STACK_ERR;
+    }
 
     if (stack->size_data != stack->capacity) return 0;
 
@@ -264,9 +252,15 @@ static int Increase_stack_capacity_ (Stack *stack)
 
     stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity); 
 
-    Init_stack_valls_ (stack);
+    Stack_vals_poison_set_ (stack);
 
     Stack_hash_save (stack);
+
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return INCREASE;
+    }
 
     return 0;    
 }
@@ -275,7 +269,11 @@ static int Increase_stack_capacity_ (Stack *stack)
 
 static int Decrease_stack_capacity_ (Stack *stack)
 {
-    Stack_check (stack, DECREASE);
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return DECREASE_STACK_ERR;
+    }
 
     if (stack->capacity     <= MIN_SIZE_CAPACITY) return 0;
 
@@ -285,9 +283,15 @@ static int Decrease_stack_capacity_ (Stack *stack)
 
     stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity);
     
-    Init_stack_valls_ (stack);
+    Stack_vals_poison_set_ (stack);
 
     Stack_hash_save (stack);
+
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return DECREASE_STACK_ERR;
+    }
 
     return 0;
 }
@@ -296,25 +300,42 @@ static int Decrease_stack_capacity_ (Stack *stack)
 
 int Stack_push (Stack *stack, elem_t vall)
 {
-    if (stack->data == (elem_t*) POISON_PTR)
+    if (stack->data == (elem_t*) NOT_ALLOC_PTR)
     {
-        printf ("The memory has been freed, you cannot use this stack.\n");
-        return 0;
+        stack->data = (elem_t*) calloc (stack->capacity, sizeof (elem_t));
+        
+        if (Stack_data_ptr_check (stack, LOG_ARGS)) return STACK_PUSH_ERR;
+
+        Stack_vals_poison_set_ (stack);
+
+        Stack_hash_save (stack);
     }
 
-    Stack_check (stack, STACK_PUSH_ERR);
+    if (Stack_data_ptr_check (stack, LOG_ARGS)) return STACK_PUSH_ERR;
+
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return STACK_PUSH_ERR;
+    }
 
     if (!Recalloc_stack_(stack, INCREASE)){
         stack->data[stack->size_data++] = vall;
     }
     else
     {
-        Print_err (STACK_PUSH_ERR);
+        Log_report (LOG_ARGS, "In push recalloc didn't work correctly\n");
         Stack_dump (stack);
         return STACK_PUSH_ERR;
     }
 
     Stack_hash_save (stack);
+
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return STACK_PUSH_ERR;
+    }
 
     return 0;
 }
@@ -323,12 +344,13 @@ int Stack_push (Stack *stack, elem_t vall)
 
 int Stack_pop (Stack *stack, elem_t *vall)
 {
-    if (stack->data == (elem_t*) POISON_PTR){
-        printf ("The memory has been freed, you cannot use this stack.\n");
-        return 0;
-    }
+    if (Stack_data_ptr_check (stack, LOG_ARGS)) return STACK_PUSH_ERR;
 
-    Stack_check (stack, STACK_POP_ERR);
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return STACK_POP_ERR;
+    }
 
     if (stack->size_data == 0)
     {
@@ -340,20 +362,28 @@ int Stack_pop (Stack *stack, elem_t *vall)
     {
         *vall = stack->data[stack->size_data - 1];
 
-        stack->data[stack->size_data - 1] = POISON_VALL;
+        stack->data[stack->size_data - 1] = POISON_VAL;
 
         stack->size_data--;
     }
     else
     {
-        Print_err (STACK_POP_ERR);
+        Log_report (LOG_ARGS, "In push recalloc didn't work correctly\n");
         Stack_dump (stack);
         return STACK_POP_ERR;
     }
 
     Stack_hash_save (stack);
 
+    if (Stack_check (stack))
+    {
+        Stack_dump (stack);
+        return STACK_POP_ERR;
+    }
+
     return 0;
 }
 
 //=======================================================================================================
+
+

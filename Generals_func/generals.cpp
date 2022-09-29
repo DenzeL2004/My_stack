@@ -40,7 +40,7 @@ int Bin_represent(FILE *fpout, size_t elem, size_t size_elem)
     return 0;
 }
 
-int64_t Get_hash (char *data, size_t len) 
+uint64_t Get_hash (char *data, size_t len) 
 {
     uint64_t hash = 0;
 

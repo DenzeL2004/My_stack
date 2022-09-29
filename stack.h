@@ -8,24 +8,20 @@
 #include <string.h>
 #include <assert.h>
 
-#ifndef elem_t
-    #include "stack_type.h"
-#endif
-
 #include "config.h"
 #include "log_def.h"
 
 struct  Stack_info
 {
-    char origin_file[MAX_SIZE_BUF] = {};
-    char origin_func[MAX_SIZE_BUF] = {};
+    char *origin_file = nullptr;
+    char *origin_func = nullptr;
     int origin_line = 0;
 };
 
 struct Stack 
 {
     #ifdef CANARY_PROTECT
-        uint64_t canary_vall_begin = CANARY_VALL;
+        uint64_t canary_val_begin = CANARY_VAL;
     #endif
 
     elem_t *data = nullptr;
@@ -41,7 +37,7 @@ struct Stack
     #endif
 
     #ifdef CANARY_PROTECT
-        uint64_t canary_vall_end   = CANARY_VALL;
+        uint64_t canary_val_end   = CANARY_VAL;
     #endif
 };
 
@@ -77,12 +73,15 @@ enum Stack_func_err{
     STACK_DTOR_ERR       = -8,
 
     STACK_SAVE_HASH_ERR  = -9,
+
+    STACK_INFO_CTOR_ERR  = -10,
+    STACK_INFO_DTOR_ERR  = -11,
 };
 
 #define Stack_ctor(stack, size)             \
         Stack_ctor_ (stack, size, LOG_ARGS)
 
-int Stack_ctor_ (Stack *stack, int size, LOG_PARAMETS);
+int Stack_ctor_ (Stack *stack, unsigned long capacity, LOG_PARAMETS);
 
 int Stack_dtor (Stack *stack);
 
@@ -90,8 +89,8 @@ int Stack_push (Stack *stack, elem_t  vall);
 
 int Stack_pop  (Stack *stack, elem_t *vall);
 
-int Check_hash_data   (Stack *stack);
+int Check_hash_data (const Stack *stack);
 
-int Check_hash_struct (Stack *stack);
+int Check_hash_struct (const Stack *stack);
 
 #endif

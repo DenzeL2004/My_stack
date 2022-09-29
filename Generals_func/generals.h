@@ -90,7 +90,7 @@ double Fix_zero (double num);
 
 int Bin_represent (FILE *fpout, size_t elem, size_t size_elem);
 
-int64_t Get_hash (char *data, unsigned int len);
+unsigned long long Get_hash (char *data, unsigned int len);
 
 /** 
  * @brief Paints a line
