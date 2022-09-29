@@ -39,7 +39,8 @@ static int Decrease_stack_capacity_ (Stack *stack);
 
 //=======================================================================================================
 
-int Stack_ctor_ (Stack *stack, unsigned long capacity, const char* file_name, const char* func_name, int line)
+int Stack_ctor_ (Stack *stack, unsigned long capacity, 
+                 const char* file_name, const char* func_name, int line)
 { 
     stack->stack_info = {};
     Stack_info_ctor_ (&stack->stack_info, LOG_VAR);
@@ -104,7 +105,8 @@ int Stack_dtor (Stack *stack)
 
 //=======================================================================================================
 
-static int Stack_info_ctor_ (Stack_info *stack_info, const char* file_name, const char* func_name, int line) 
+static int Stack_info_ctor_ (Stack_info *stack_info, 
+                             const char* file_name, const char* func_name, int line) 
 {
     if (stack_info == nullptr)
     {
@@ -212,7 +214,7 @@ int Check_hash_struct (const Stack *stack)
 
 static int Stack_vals_poison_set_ (Stack *stack)
 {
-    if (stack->data == nullptr || stack->data == (elem_t*) POISON_PTR)
+    if (Stack_data_ptr_check (stack, LOG_ARGS))
     {
         Log_report (LOG_ARGS, "Stack vals don't assigned\n");
         Stack_dump (stack);

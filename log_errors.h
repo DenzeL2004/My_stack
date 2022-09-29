@@ -11,7 +11,7 @@
 
 #else
 
-    #define Log_report(message)    
+    #define Log_report(LOG_VAR, message)    
 
 #endif
 
@@ -19,6 +19,6 @@ int Open_logs_file  ();
 
 int Close_logs_file ();
 
-int Log_report_ (LOG_PARAMETS, char *format, ...);
+int Log_report_ (LOG_PARAMETS, const char *format, ...);
 
 #endif

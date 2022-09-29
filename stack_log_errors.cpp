@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef elem_t
-    #include "stack_type.h"
-#endif
-
 #include "stack_log_errors.h"
 #include "log_errors.h"
 #include "stack.h"
@@ -30,8 +26,8 @@ int Open_stack_logs_file ()
 
 //=======================================================================================================
 
-int Stack_data_ptr_check (Stack *stack, const char* file_name, 
-                                const char* func_name, int line)
+int Stack_data_ptr_check (Stack *stack, 
+                          const char* file_name, const char* func_name, int line)
 {
     if (stack->data == nullptr)
     {
@@ -138,7 +134,9 @@ uint64_t Stack_check (Stack *stack)
     #endif
 
     #ifdef HASH
-        if (Check_hash_data (stack))   err_code |= HASH_DATA_CURUPTED;
+        if (!(err_code & CAPACITY_LOWER_ZERO))
+            if (Check_hash_data (stack))   err_code |= HASH_DATA_CURUPTED;
+
         if (Check_hash_struct (stack)) err_code |= HASH_STRUCT_CURUPTED;
     #endif
 

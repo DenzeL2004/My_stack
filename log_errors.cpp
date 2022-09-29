@@ -15,7 +15,7 @@ int Open_logs_file ()
 
     time_t seconds = time (NULL)  + 3 * 60* 60;;   
 
-    fprintf (fp_logs, "-------------Time open logs file: %s\n\n", 
+    fprintf (fp_logs, "\n-------------Time open logs file: %s\n\n", 
                     asctime(gmtime(&seconds))); 
     
     if (!fp_logs)
@@ -29,7 +29,7 @@ int Open_logs_file ()
 
 //=======================================================================================================
 
-int Log_report_ (const char* file_name, const char* func_name, int line, char *format, ...) 
+int Log_report_ (const char* file_name, const char* func_name, int line, const char *format, ...) 
 { 
     fprintf (fp_logs, "=================================================\n\n");
 
@@ -59,7 +59,7 @@ int Close_logs_file ()
 {
     time_t seconds = time (NULL)  + 3 * 60* 60;;   
 
-    fprintf (fp_logs, "-------------Time close logs file: %s\n\n", 
+    fprintf (fp_logs, "\n-------------Time close logs file: %s\n\n", 
                     asctime(gmtime(&seconds))); 
 
     if (Close_file_ptr (fp_logs))

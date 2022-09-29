@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 #include "stack.h"
 #include "stack_log_errors.h"
 #include "log_errors.h"
@@ -35,11 +36,10 @@ int main()
       } 
       else
       {
-         Stack_push(&stack, val);
+         Stack_push (&stack, val);
+         stack.capacity = -1;
       }
    }
-
-   Stack_dump (&stack);
 
    if (Stack_dtor (&stack))
    {
@@ -48,7 +48,7 @@ int main()
    }
 
    #ifdef USE_LOG
-      Close_stack_logs_file ();
       Close_logs_file ();
+      Close_stack_logs_file ();
    #endif
 }

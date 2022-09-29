@@ -31,16 +31,16 @@ double Fix_zero (double num){
     return num;
 }
 
-int Bin_represent(FILE *fpout, size_t elem, size_t size_elem)
+int Bin_represent(FILE *fpout, size_t elem, uint64_t size_elem)
 {
-    for (size_t num_bit = size_elem; num_bit > 0; --num_bit) {
+    for (uint64_t num_bit = size_elem; num_bit > 0; --num_bit) {
         fprintf(fpout, "%d", (elem & (1 << (num_bit-1))) ? 1 : 0);
     }
 
     return 0;
 }
 
-uint64_t Get_hash (char *data, size_t len) 
+uint64_t Get_hash (char *data, uint64_t len) 
 {
     uint64_t hash = 0;
 

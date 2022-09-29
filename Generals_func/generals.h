@@ -1,6 +1,8 @@
 #ifndef _GENERALS_H_
 #define _GENERALS_H_
 
+#include <stdint.h>
+
 #define min(a, b) ((a) < (b) ? (а) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
@@ -22,8 +24,6 @@ const char GREEN[]  =  "\033[1;32m";     ///< Green colour
 const char YELLOW[] =  "\033[1;33m";     ///< Yellow colour
 
 const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
-
-const int Hash_const = 239017;
 
 /**
  * @enum Errors
@@ -88,9 +88,9 @@ bool Is_zero (double num);
 */
 double Fix_zero (double num);
 
-int Bin_represent (FILE *fpout, size_t elem, size_t size_elem);
+int Bin_represent(FILE *fpout, size_t elem, uint64_t size_elem);
 
-unsigned long long Get_hash (char *data, unsigned int len);
+uint64_t Get_hash (char *data, uint64_t len);
 
 /** 
  * @brief Paints a line
