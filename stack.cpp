@@ -84,8 +84,18 @@ int Stack_dtor (Stack *stack)
     free (stack->data);
     stack->data = (elem_t*) POISON_PTR;
 
-    stack->size_data = 0;
-    stack->capacity  = 0;
+    stack->size_data = POISON_VAL;
+    stack->capacity  = POISON_VAL;
+
+    #ifdef CANARY_PROTECT
+        stack->canary_val_begin = POISON_VAL;
+        stack->canary_val_end   = POISON_VAL;
+    #endif
+
+    #ifdef HASH
+        stack->hash_data   = POISON_VAL;
+        stack->hash_struct = POISON_VAL;
+    #endif
 
     Stack_info_dtor_ (&stack->stack_info);
     
