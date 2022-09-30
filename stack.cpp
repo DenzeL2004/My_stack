@@ -442,12 +442,7 @@ int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
 
     if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
-    uint64_t err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_POP_ERR;
-    }
+    uint64_t err_code = 0;
 
     if (!Recalloc_stack (stack, DECREASE))
     {
@@ -485,8 +480,6 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
                  const char* file_name, const char* func_name, int line, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    
-
 
     fprintf (fp_logs, "=================================================\n\n");
 
@@ -646,4 +639,3 @@ int Stack_dump_jr_ (Stack *stack, FILE *fp_logs)
 }
 
 //=======================================================================================================
-
