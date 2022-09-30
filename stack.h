@@ -4,7 +4,7 @@
 #include <math.h>
 #include <inttypes.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <string.h>
 #include <string.h>
 #include <assert.h>
 
@@ -49,21 +49,23 @@ enum Change_stack_capacity
 
 enum Stack_err
 {
-    DATA_IS_NULLPTR      = 1,
-    DATA_IS_POISON       = 2,
-    SIZE_LOWER_ZERO      = 4,
-    CAPACITY_LOWER_ZERO  = 8,
-    CAPACITY_LOWER_SIZE  = 16,
-    CANARY_CURUPTED      = 32,
-    HASH_DATA_CURUPTED   = 64,
-    HASH_STRUCT_CURUPTED = 128
+    BAD_DATA_PTR         = 1,
+
+    SIZE_LOWER_ZERO      = 2,
+    CAPACITY_LOWER_ZERO  = 4,
+    CAPACITY_LOWER_SIZE  = 8,
+    
+    CANARY_CURUPTED      = 16,
+    
+    HASH_DATA_CURUPTED   = 32,
+    HASH_STRUCT_CURUPTED = 64
 };
 
 enum Stack_func_err{
     STACK_CTOR_ERR       = -1,
     INIT_STACK_VALLS_ERR = -2,
     
-    REALLOC_STACK_ERR    = -3,
+    RECALLOC_STACK_ERR    = -3,
     INCREASE_STACK_ERR   = -4,
     DECREASE_STACK_ERR   = -5,
     
@@ -101,7 +103,7 @@ int Stack_pop_  (Stack *stack, elem_t *val, FILE *fp_logs);
 #ifdef USE_LOG
 
     #define Stack_dump(stack)                       \
-            Stack_dump_ (stack, LOG_ARGS, fp_logs)
+            Stack_dump_ (stack, err_code, LOG_ARGS, fp_logs)
 
 #else  
     
@@ -109,6 +111,6 @@ int Stack_pop_  (Stack *stack, elem_t *val, FILE *fp_logs);
 
 #endif
 
-int Stack_dump_ (Stack *stack, LOG_PARAMETS, FILE *fp_logs);
+int Stack_dump_ (Stack *stack, uint64_t err_code, LOG_PARAMETS, FILE *fp_logs);
 
 #endif

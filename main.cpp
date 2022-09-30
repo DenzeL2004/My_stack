@@ -19,6 +19,11 @@ int main()
    if (Stack_ctor (&stack, 10))
    {
       Log_report ("Construct Struct failed\n");
+
+      #ifdef USE_LOG
+         Close_logs_file (fp_logs);
+      #endif
+
       return 1;
    }
 
@@ -44,6 +49,11 @@ int main()
    if (Stack_dtor (&stack))
    {
       Log_report ("Destruct Struct failed\n");
+
+      #ifdef USE_LOG
+         Close_logs_file (fp_logs);
+      #endif
+
       return 1;
    }
 

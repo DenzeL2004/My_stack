@@ -13,7 +13,7 @@
 #include "stack.h"
 
 #define Stack_info_ctor(stack_info)                       \
-        Stack_info_ctor_ (stack_info, LOG_ARGS, fp_logs)
+        Stack_info_ctor_ (stack_info, LOG_VAR, fp_logs)
 
 static int Stack_info_ctor_  (Stack_info *stack_info, LOG_PARAMETS, FILE *fp_logs);
 
@@ -39,10 +39,10 @@ static int Stack_hash_save_         (Stack *stack, FILE *fp_logs);
 
 static int Stack_vals_poison_set_   (Stack *stack, FILE *fp_logs);
 
-#define Recalloc_stack(stack, mode)                       \
-        Recalloc_stack_ (stack, mode, fp_logs)
+#define Recalloc_stack(stack, option)                       \
+        Recalloc_stack_ (stack, option, fp_logs)
 
-static int Recalloc_stack_          (Stack *stack, int mode, FILE *fp_logs);
+static int Recalloc_stack_          (Stack *stack, const int option, FILE *fp_logs);
 
 #define Increase_stack_capacity(stack)                    \
         Increase_stack_capacity_ (stack, fp_logs)
@@ -64,10 +64,23 @@ static int Check_hash_data_   (const Stack *stack, FILE *fp_logs);
 
 static int Check_hash_struct_ (const Stack *stack, FILE *fp_logs);
 
-#define Stack_data_ptr_check(stack)                       \
-        Stack_data_ptr_check_ (stack, fp_logs)
+#define Check_stack_data_ptr(stack)                       \
+        Check_stack_data_ptr_ (stack, fp_logs)
 
-static int Stack_data_ptr_check_ (Stack *stack, FILE *fp_logs);
+static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs);
+
+#ifdef USE_LOG
+
+    #define Stack_dump_jr(stack)                       \
+            Stack_dump_jr_ (stack, fp_logs)
+
+#else  
+    
+    #define Stack_dump_jr(stack)                   
+
+#endif
+
+int Stack_dump_jr_ (Stack *stack, FILE *fp_logs);
 
 #define Stack_check(stack)                                \
         Stack_check_ (stack, fp_logs)
@@ -77,7 +90,7 @@ static uint64_t Stack_check_     (Stack *stack, FILE *fp_logs);
 //=======================================================================================================
 
 int Stack_ctor_ (Stack *stack, unsigned long capacity, 
-                 const char* file_name, const char* func_name, int line, FILE *fp_logs)
+                 const char* file_name, const char* func_name, const int line, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
@@ -98,6 +111,7 @@ int Stack_ctor_ (Stack *stack, unsigned long capacity,
         Stack_hash_save (stack);
     #endif
     
+    uint64_t err_code = Stack_check (stack);
     if (Stack_check (stack))
     {
         Stack_dump (stack);
@@ -113,8 +127,7 @@ int Stack_dtor_ (Stack *stack, FILE* fp_logs)
 {   
     assert (stack != nullptr && "stack is nullptr");
 
-    if (Stack_data_ptr_check (stack)) return STACK_CTOR_ERR; 
-
+    uint64_t err_code = Stack_check (stack);
     if (Stack_check (stack))
     {
         Stack_dump (stack);
@@ -149,11 +162,7 @@ int Stack_dtor_ (Stack *stack, FILE* fp_logs)
 static int Stack_info_ctor_ (Stack_info *stack_info, 
                              const char* file_name, const char* func_name, int line, FILE *fp_logs) 
 {
-    if (stack_info == nullptr)
-    {
-        Log_report ("Ptr on struct stack_info is nullptr\n");
-        return STACK_INFO_CTOR_ERR;
-    }
+    assert (stack_info != nullptr && "stack_info is nullptr");
 
     stack_info->origin_line = line;
     stack_info->origin_file = strdup (file_name);
@@ -166,11 +175,7 @@ static int Stack_info_ctor_ (Stack_info *stack_info,
 
 static int Stack_info_dtor_ (Stack_info *stack_info, FILE *fp_logs) 
 {
-    if (stack_info == nullptr)
-    {
-        Log_report ("Ptr on struct stack_info is nullptr\n");
-        return STACK_INFO_CTOR_ERR;
-    }
+    assert (stack_info != nullptr && "stack_info is nullptr");
 
     stack_info->origin_line = -1;
     
@@ -191,7 +196,7 @@ static int Stack_hash_save_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    size_t size_struct = sizeof (*stack) - 2*sizeof (uint64_t);
+    size_t size_struct = sizeof (*stack) - 2 * sizeof (uint64_t);
 
     #ifdef CANARY_PROTECT
         size_struct -= sizeof (uint64_t);
@@ -263,10 +268,13 @@ static int Stack_vals_poison_set_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (Stack_data_ptr_check (stack))
+    if (Check_stack_data_ptr (stack))
     {
         Log_report ("Stack vals don't assigned\n");
+        
+        uint64_t err_code = Stack_check (stack);
         Stack_dump (stack);
+        
         return INIT_STACK_VALLS_ERR;
     }
 
@@ -278,20 +286,21 @@ static int Stack_vals_poison_set_ (Stack *stack, FILE *fp_logs)
 
 //=======================================================================================================
 
-static int Recalloc_stack_(Stack *stack, int mode, FILE *fp_logs) // resize(.., option)
+static int Recalloc_stack_(Stack *stack, const int option, FILE *fp_logs) 
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (Stack_check (stack))
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
-        return REALLOC_STACK_ERR;
+        return RECALLOC_STACK_ERR;
     }
 
-    if (mode == INCREASE)
+    if (option == INCREASE)
         return Increase_stack_capacity (stack);      //recalloc
 
-    if (mode == DECREASE)
+    if (option == DECREASE)
         return Decrease_stack_capacity (stack);     // recalloc
 
     return 0;
@@ -303,7 +312,8 @@ static int Increase_stack_capacity_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (Stack_check (stack))
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return INCREASE_STACK_ERR;
@@ -319,7 +329,8 @@ static int Increase_stack_capacity_ (Stack *stack, FILE *fp_logs)
 
     Stack_hash_save (stack);
 
-    if (Stack_check (stack))
+    err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return INCREASE;
@@ -334,7 +345,8 @@ static int Decrease_stack_capacity_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (Stack_check (stack))
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return DECREASE_STACK_ERR;
@@ -344,7 +356,7 @@ static int Decrease_stack_capacity_ (Stack *stack, FILE *fp_logs)
 
     if (stack->capacity / 4 <= stack->size_data ) return 0;
     
-    stack->capacity /= 2; //-> increase_step
+    stack->capacity /= 2; 
 
     stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity);
     
@@ -352,6 +364,7 @@ static int Decrease_stack_capacity_ (Stack *stack, FILE *fp_logs)
 
     Stack_hash_save (stack);
 
+    err_code = Stack_check (stack);
     if (Stack_check (stack))
     {
         Stack_dump (stack);
@@ -366,21 +379,23 @@ static int Decrease_stack_capacity_ (Stack *stack, FILE *fp_logs)
 int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
+    assert (stack->data != nullptr && "stack data is nullptr");
 
     if (stack->data == (elem_t*) NOT_ALLOC_PTR)
     {
         stack->data = (elem_t*) calloc (stack->capacity, sizeof (elem_t));
         
-        if (Stack_data_ptr_check (stack)) return STACK_PUSH_ERR;
+        if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
         Stack_vals_poison_set (stack);
 
         Stack_hash_save (stack);
     }
 
-    if (Stack_data_ptr_check (stack)) return STACK_PUSH_ERR;
+    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
-    if (Stack_check (stack))
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return STACK_PUSH_ERR;
@@ -392,13 +407,17 @@ int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
     else
     {
         Log_report ("In push recalloc didn't work correctly\n");
+        
+        err_code = Stack_check (stack);
         Stack_dump (stack);
+        
         return STACK_PUSH_ERR;
     }
 
     Stack_hash_save (stack);
 
-    if (Stack_check (stack))
+    err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return STACK_PUSH_ERR;
@@ -412,10 +431,12 @@ int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
+    assert (stack->data != nullptr && "stack data is nullptr");
 
-    if (Stack_data_ptr_check (stack)) return STACK_PUSH_ERR;
+    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
-    if (Stack_check (stack))
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return STACK_POP_ERR;
@@ -437,14 +458,18 @@ int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
     }
     else
     {
-        Log_report ("In push recalloc didn't work correctly\n");
+        Log_report ("In pop recalloc didn't work correctly\n");
+        
+        err_code = Stack_check (stack);
         Stack_dump (stack);
+        
         return STACK_POP_ERR;
     }
 
     Stack_hash_save (stack);
 
-    if (Stack_check (stack))
+    err_code = Stack_check (stack);
+    if (err_code)
     {
         Stack_dump (stack);
         return STACK_POP_ERR;
@@ -455,34 +480,12 @@ int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
 
 //=======================================================================================================
 
-static int Stack_data_ptr_check_ (Stack *stack, FILE *fp_logs)
+int Stack_dump_ (Stack *stack, uint64_t err_code,
+                 const char* file_name, const char* func_name, int line, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
+    assert (stack->data != nullptr && "stack data is nullptr");
 
-    if (stack->data == nullptr)
-    {
-        Stack_dump (stack);
-        return 1;
-    }
-
-    if (stack->data == (elem_t*) POISON_PTR)
-    {
-        Log_report ("The user tried to use a pointer with a poisonous value\n");
-        return 1;
-    }
-
-    return 0;
-}
-
-//=======================================================================================================
-
-int Stack_dump_ (Stack *stack, const char* file_name, 
-                                const char* func_name, int line, FILE *fp_logs)
-{
-    assert (stack != nullptr && "stack is nullptr");
-
-    uint64_t err_code = Stack_check (stack);
-    if (!err_code) return 0;
 
     fprintf (fp_logs, "=================================================\n\n");
 
@@ -514,8 +517,7 @@ int Stack_dump_ (Stack *stack, const char* file_name,
 
     fprintf (fp_logs, "\n");
 
-    if (err_code & DATA_IS_NULLPTR) fprintf (fp_logs, "stack pointer data is nullptr.\n");
-    if (err_code & DATA_IS_POISON ) fprintf (fp_logs, "stack pointer data is poison vallue.\n");
+    if (err_code & BAD_DATA_PTR) fprintf (fp_logs, "stack pointer data is BAD.\n");
 
     fprintf (fp_logs, "\n");
 
@@ -529,7 +531,7 @@ int Stack_dump_ (Stack *stack, const char* file_name,
         if (err_code & CANARY_CURUPTED) fprintf (fp_logs, "stack canary_begin is currupted.\n");
     #endif
 
-    if (!((err_code & DATA_IS_NULLPTR) || (err_code & DATA_IS_POISON) || 
+    if (!((err_code & BAD_DATA_PTR) || 
           (err_code & SIZE_LOWER_ZERO) || (err_code & CAPACITY_LOWER_ZERO)))
     {
         for (int id_elem = 0; id_elem < stack->capacity; id_elem++)
@@ -548,14 +550,43 @@ int Stack_dump_ (Stack *stack, const char* file_name,
 
 //=======================================================================================================
 
+
+static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+    assert (stack->data != nullptr && "stack data is nullptr");
+
+    if (stack->data == (elem_t*) POISON_PTR)
+    {
+        Log_report ("The user tried to use a pointer with a BAD value\n");
+        return BAD_DATA_PTR;
+    }
+
+    if (stack->data == (elem_t*) NOT_ALLOC_PTR && 
+        stack->capacity == 0 && stack->size_data == 0)
+    {
+            return 0;
+    }
+
+    if (stack->data == (elem_t*) NOT_ALLOC_PTR && 
+        (stack->capacity != 0 || stack->size_data != 0))
+    {
+            return BAD_DATA_PTR;
+    }
+
+    return 0;
+}
+
+//=======================================================================================================
+
 static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
+    assert (stack->data != nullptr && "stack data is nullptr");
 
     uint64_t err_code = 0;
 
-    if (stack->data == nullptr)              err_code |= DATA_IS_NULLPTR;
-    if (stack->data == (elem_t*) POISON_PTR) err_code |= DATA_IS_POISON;
+    if (Check_stack_data_ptr (stack)) err_code |= BAD_DATA_PTR;
     
     if (stack->size_data < 0) err_code |= SIZE_LOWER_ZERO;
     if (stack->capacity  < 0) err_code |= CAPACITY_LOWER_ZERO;
@@ -574,7 +605,40 @@ static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
         if (Check_hash_struct (stack)) err_code |= HASH_STRUCT_CURUPTED;
     #endif
 
+    if (!err_code) Stack_dump_jr (stack);
+
     return err_code;    
 }
 
 //=======================================================================================================
+
+int Stack_dump_jr_ (Stack *stack, FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+
+    fprintf (fp_logs, "=================================================\n\n");
+
+    fprintf (fp_logs, "REFERENCE:\n");
+
+    fprintf (fp_logs, "Check_stack did't detect any errors in the stack structure");
+
+    fprintf (fp_logs, "Stack pointer to data is |%p|\n\n", (char*) stack->data);
+
+    fprintf (fp_logs, "Stack size_data = %ld\n", stack->size_data);
+    fprintf (fp_logs, "Stack capacity  = %ld\n",  stack->capacity);
+
+    #ifdef CANARY_PROTECT
+        fprintf (fp_logs, "Stack canary vall begin = 0x%lluX\n", stack->canary_val_begin);
+        fprintf (fp_logs, "Stack canary vall end   = 0x%lluX\n", stack->canary_val_end);
+    #endif
+
+    #ifdef HASH 
+        fprintf (fp_logs, "Stack hash data     = %llu\n", stack->hash_data);
+        fprintf (fp_logs, "Stack hash struct   = %llu\n", stack->canary_val_end);
+    #endif
+
+    return 0;
+}
+
+//=======================================================================================================
+
