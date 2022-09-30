@@ -313,13 +313,6 @@ static int Recalloc_stack_(Stack *stack, const int option, FILE *fp_logs)
     if (option == DECREASE)
         return Decrease_stack_capacity (stack);     // recalloc
 
-    err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return RECALLOC_STACK_ERR;
-    }
-
     return 0;
 }
 
@@ -395,6 +388,7 @@ int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
     
+
     if (stack->data == (elem_t*) NOT_ALLOC_PTR)
     {
         stack->data = (elem_t*) calloc (stack->capacity, sizeof (elem_t));
@@ -492,6 +486,8 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
 {
     assert (stack != nullptr && "stack is nullptr");
     
+
+
     fprintf (fp_logs, "=================================================\n\n");
 
     fprintf (fp_logs, "REFERENCE:\n");
@@ -609,8 +605,7 @@ static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
     #endif
 
     #ifdef HASH
-        if (!(err_code & CAPACITY_LOWER_ZERO))
-            if (Check_hash_data (stack))   err_code |= HASH_DATA_CURUPTED;
+        if (Check_hash_data (stack))   err_code |= HASH_DATA_CURUPTED;
 
         if (Check_hash_struct (stack)) err_code |= HASH_STRUCT_CURUPTED;
     #endif
@@ -628,7 +623,7 @@ int Stack_dump_jr_ (Stack *stack, FILE *fp_logs)
 
     fprintf (fp_logs, "=================================================\n\n");
 
-    fprintf (fp_logs, "REFERENCE:\n");
+    fprintf (fp_logs, "OK:\n");
 
     fprintf (fp_logs, "Check_stack did't detect any errors in the stack structure");
 
