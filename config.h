@@ -5,9 +5,9 @@
 
 typedef int elem_t;
 
-#define USE_LOG  //<- logging errors
+#define USE_LOG  //<- connect when we use logs
 
-#define DEBUG    //<- use of protection
+#define DEBUG    //<- Use of protection
 
 #ifdef DEBUG
 
@@ -21,16 +21,14 @@ typedef int elem_t;
 
 #endif
 
-const elem_t POISON_VAL = 228;       //<- poison value
+const elem_t POISON_VAL = 228;       //<- fill stack with poisonous value
 
-const elem_t POISON_PTR = 4242564;   //<- poison ptr
+const elem_t POISON_PTR = 4242564;   //<- fill pointer with poison value
 
-const elem_t NOT_ALLOC_PTR = 666666; //<- poison ptr
+const elem_t NOT_ALLOC_PTR = 666666; //<- fill in the value of the pointer to which we are going to allocate dynamic memory
 
-#define PRINT_TYPE "d"
+#define PRINT_TYPE "d"               //<- specifier character to print elem_t
 
-#define MAX_SIZE_BUF 50
-
-#define MIN_SIZE_CAPACITY 10 
+const int MIN_SIZE_CAPACITY = 10;
 
 #endif

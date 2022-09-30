@@ -6,17 +6,14 @@ FLAGS = -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equa
 		-Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel  	\
 		-Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE
 
-build:  main.o stack.o stack_log_errors.o generals.o log_errors.o
-	g++ obj/main.o obj/stack.o obj/stack_log_errors.o obj/generals.o obj/log_errors.o -o stack
+build:  main.o stack.o generals.o log_errors.o
+	g++ obj/main.o obj/stack.o  obj/generals.o obj/log_errors.o -o stack
 
 main.o: main.cpp
 	g++ main.cpp -c -o obj/main.o $(FLAGS)
 
 stack.o: stack.cpp
 	g++ stack.cpp -c -o obj/stack.o $(FLAGS)
-
-stack_log_errors.o: stack_log_errors.cpp
-	g++ stack_log_errors.cpp -c -o obj/stack_log_errors.o $(FLAGS)
 
 log_errors.o: log_errors.cpp
 	g++ log_errors.cpp -c -o obj/log_errors.o $(FLAGS)

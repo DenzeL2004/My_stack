@@ -1,2 +1,4 @@
 *.exe
 obj/
+stack_log_errors.h
+stack_log_errors.cpp

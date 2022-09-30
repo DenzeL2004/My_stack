@@ -9,16 +9,16 @@ const int N = 50;
 
 int main()
 {
+   FILE *fp_logs = stdout;
    #ifdef USE_LOG
-      Open_logs_file ();
-      Open_stack_logs_file ();
+      fp_logs = Open_logs_file ();
    #endif
    
    Stack stack = {};
 
    if (Stack_ctor (&stack, 10))
    {
-      Log_report (LOG_ARGS, "Construct Struct failed\n");
+      Log_report ("Construct Struct failed\n");
       return 1;
    }
 
@@ -37,18 +37,17 @@ int main()
       else
       {
          Stack_push (&stack, val);
-         stack.capacity = -1;
+         //stack.capacity = -1;
       }
    }
 
    if (Stack_dtor (&stack))
    {
-      Log_report (LOG_ARGS, "Destruct Struct failed\n");
+      Log_report ("Destruct Struct failed\n");
       return 1;
    }
 
    #ifdef USE_LOG
-      Close_logs_file ();
-      Close_stack_logs_file ();
+      Close_logs_file (fp_logs);
    #endif
 }

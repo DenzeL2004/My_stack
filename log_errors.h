@@ -6,19 +6,19 @@
 
 #ifdef USE_LOG
 
-    #define Log_report(LOG_VAR, message)                            \
-            Log_report_ (LOG_VAR, message)
+    #define Log_report(message)                            \
+            Log_report_ (LOG_ARGS, fp_logs, message)
 
 #else
 
-    #define Log_report(LOG_VAR, message)    
+    #define Log_report(message)    
 
 #endif
 
-int Open_logs_file  ();
+FILE* Open_logs_file  ();
 
-int Close_logs_file ();
+int Close_logs_file (FILE* fp_logs);
 
-int Log_report_ (LOG_PARAMETS, const char *format, ...);
+int Log_report_ (LOG_PARAMETS, FILE* fp_logs, const char *format, ...);
 
 #endif

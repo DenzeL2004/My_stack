@@ -20738,3 +20738,3374 @@ stack capacity is lower size_data:
 
 =================================================
 
+
+-------------Time open logs file: Fri Sep 30 02:53:43 2022
+
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_dtor_(Stack*, FILE*), line 120
+
+ERR CODE: 10011000
+Stack pointer to data is |00942168|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+SHORT REFERENCE:
+The program returned an error in
+
+In file main.cpp
+In function int main()
+In line 46
+
+Destruct Struct failed
+=================================================
+
+
+n----------------------------------------------------
+Time open logs file: Fri Sep 30 02:57:31 2022
+
+
+n----------------------------------------------------
+Time close logs file: Fri Sep 30 02:57:54 2022
+
+
+
+----------------------------------------------------
+Time open logs file: Fri Sep 30 02:58:28 2022
+
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_dtor_(Stack*, FILE*), line 120
+
+ERR CODE: 10011000
+Stack pointer to data is |00D221C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+SHORT REFERENCE:
+The program returned an error in
+
+In file main.cpp
+In function int main()
+In line 46
+
+Destruct Struct failed
+=================================================
+
+
+
+----------------------------------------------------
+Time open logs file: Fri Sep 30 03:03:06 2022
+
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_push_(Stack*, elem_t, FILE*), line 385
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_pop_(Stack*, elem_t*, FILE*), line 420
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+REFERENCE:
+Stack variable created in file stack.cpp in function int Stack_ctor_(Stack*, long unsigned int, const char*, const char*, int, FILE*) line 85.
+Caused an error in file stack.cpp, function int Stack_dtor_(Stack*, FILE*), line 120
+
+ERR CODE: 10011000
+Stack pointer to data is |008C21C0|
+
+Stack size_data = 1
+Stack capacity  = -1
+Stack canary vall begin = 0x16045686376333425342X
+Stack canary vall end   = 0x16045686376333425342X
+Stack hash data     = 16171717547542328850
+Stack hash struct   = 16045686376333425342
+
+
+stack capacity is a negative number.
+stack capacity is lower size_data:
+
+=================================================
+
+=================================================
+
+SHORT REFERENCE:
+The program returned an error in
+
+In file main.cpp
+In function int main()
+In line 46
+
+Destruct Struct failed
+=================================================
+
+
+
+----------------------------------------------------
+Time open logs file: Fri Sep 30 03:03:31 2022
+
+
+
+----------------------------------------------------
+Time close logs file: Fri Sep 30 03:03:33 2022
+
+
