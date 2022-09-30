@@ -214,12 +214,6 @@ static int Stack_hash_save_ (Stack *stack, FILE *fp_logs)
 
     stack->hash_struct = Get_hash ((char*) stack, size_struct);
 
-    if (stack->capacity < 0)
-    {
-        Log_report ("We are trying to save the memory of a negative size\n");
-        return STACK_SAVE_HASH_ERR;
-    }
-
     size_t size_data = stack->capacity * sizeof (elem_t);
 
     stack->hash_data = Get_hash ((char*) stack->data, size_data);
@@ -237,8 +231,7 @@ static int Check_hash_data_ (const Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR &&
-        stack->capacity >= 0) 
+    if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR) 
     {
         int size_data = stack->capacity * sizeof (elem_t);
 
@@ -320,6 +313,13 @@ static int Recalloc_stack_(Stack *stack, const int option, FILE *fp_logs)
     if (option == DECREASE)
         return Decrease_stack_capacity (stack);     // recalloc
 
+    err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return RECALLOC_STACK_ERR;
+    }
+
     return 0;
 }
 
@@ -369,8 +369,6 @@ static int Decrease_stack_capacity_ (Stack *stack, FILE *fp_logs)
         return DECREASE_STACK_ERR;
     }
 
-    if (stack->capacity     <= MIN_SIZE_CAPACITY) return 0;
-
     if (stack->capacity / 4 <= stack->size_data ) return 0;
     
     stack->capacity /= 2; 
@@ -397,7 +395,6 @@ int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
     
-
     if (stack->data == (elem_t*) NOT_ALLOC_PTR)
     {
         stack->data = (elem_t*) calloc (stack->capacity, sizeof (elem_t));
@@ -448,7 +445,6 @@ int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    
 
     if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
@@ -457,12 +453,6 @@ int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
     {
         Stack_dump (stack);
         return STACK_POP_ERR;
-    }
-
-    if (stack->size_data == 0)
-    {
-        printf ("Size is zero, you can't use Stack_pop\n");
-        return 0;
     }
 
     if (!Recalloc_stack (stack, DECREASE))
@@ -502,8 +492,6 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
 {
     assert (stack != nullptr && "stack is nullptr");
     
-
-
     fprintf (fp_logs, "=================================================\n\n");
 
     fprintf (fp_logs, "REFERENCE:\n");

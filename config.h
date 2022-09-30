@@ -29,6 +29,4 @@ const elem_t NOT_ALLOC_PTR = 666666; //<- fill in the value of the pointer to wh
 
 #define PRINT_TYPE "d"               //<- specifier character to print elem_t
 
-const int MIN_SIZE_CAPACITY = 10;
-
 #endif
