@@ -89,7 +89,7 @@ static uint64_t Stack_check_     (Stack *stack, FILE *fp_logs);
 
 //=======================================================================================================
 
-int Stack_ctor_ (Stack *stack, unsigned long capacity, 
+int Stack_ctor_ (Stack *stack, long capacity, 
                  const char* file_name, const char* func_name, const int line, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
@@ -100,6 +100,15 @@ int Stack_ctor_ (Stack *stack, unsigned long capacity,
     stack->data = (elem_t*) NOT_ALLOC_PTR;
 
     stack->size_data = 0;
+
+    if (capacity < 0)
+    {
+        printf ("You can't use a negative number for capacity\n");
+
+        Log_report ("The user tried to assign a negative number to the size\n");
+        return STACK_CTOR_ERR;
+    }
+
     stack->capacity  = capacity; 
 
     #ifdef CANARY_PROTECT
@@ -110,9 +119,10 @@ int Stack_ctor_ (Stack *stack, unsigned long capacity,
     #ifdef HASH
         Stack_hash_save (stack);
     #endif
+
     
     uint64_t err_code = Stack_check (stack);
-    if (Stack_check (stack))
+    if (err_code)
     {
         Stack_dump (stack);
         return STACK_CTOR_ERR;
@@ -204,6 +214,12 @@ static int Stack_hash_save_ (Stack *stack, FILE *fp_logs)
 
     stack->hash_struct = Get_hash ((char*) stack, size_struct);
 
+    if (stack->capacity < 0)
+    {
+        Log_report ("We are trying to save the memory of a negative size\n");
+        return STACK_SAVE_HASH_ERR;
+    }
+
     size_t size_data = stack->capacity * sizeof (elem_t);
 
     stack->hash_data = Get_hash ((char*) stack->data, size_data);
@@ -221,7 +237,8 @@ static int Check_hash_data_ (const Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR) 
+    if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR &&
+        stack->capacity >= 0) 
     {
         int size_data = stack->capacity * sizeof (elem_t);
 
@@ -379,7 +396,7 @@ static int Decrease_stack_capacity_ (Stack *stack, FILE *fp_logs)
 int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    assert (stack->data != nullptr && "stack data is nullptr");
+    
 
     if (stack->data == (elem_t*) NOT_ALLOC_PTR)
     {
@@ -431,7 +448,7 @@ int Stack_push_ (Stack *stack, elem_t vall, FILE *fp_logs)
 int Stack_pop_ (Stack *stack, elem_t *vall, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    assert (stack->data != nullptr && "stack data is nullptr");
+    
 
     if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
@@ -484,7 +501,7 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
                  const char* file_name, const char* func_name, int line, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    assert (stack->data != nullptr && "stack data is nullptr");
+    
 
 
     fprintf (fp_logs, "=================================================\n\n");
@@ -554,11 +571,16 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
 static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    assert (stack->data != nullptr && "stack data is nullptr");
+    
+    if (stack->data == nullptr)
+    {
+        Log_report ("The user tried to use nullptr. Data is nullptr\n");
+        return BAD_DATA_PTR;
+    }
 
     if (stack->data == (elem_t*) POISON_PTR)
     {
-        Log_report ("The user tried to use a pointer with a BAD value\n");
+        Log_report ("The user tried to use a pointer with a pison value\n");
         return BAD_DATA_PTR;
     }
 
@@ -569,9 +591,10 @@ static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs)
     }
 
     if (stack->data == (elem_t*) NOT_ALLOC_PTR && 
-        (stack->capacity != 0 || stack->size_data != 0))
+        (stack->size_data != 0))
     {
-            return BAD_DATA_PTR;
+        Log_report ("The user tried to use a pointer which has't yet been allocateв\n");
+        return BAD_DATA_PTR;
     }
 
     return 0;
@@ -581,13 +604,12 @@ static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs)
 
 static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
 {
-    assert (stack != nullptr && "stack is nullptr");
-    assert (stack->data != nullptr && "stack data is nullptr");
+    assert (stack != nullptr && "stack is nullptr");   
 
     uint64_t err_code = 0;
 
     if (Check_stack_data_ptr (stack)) err_code |= BAD_DATA_PTR;
-    
+
     if (stack->size_data < 0) err_code |= SIZE_LOWER_ZERO;
     if (stack->capacity  < 0) err_code |= CAPACITY_LOWER_ZERO;
 

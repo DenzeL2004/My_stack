@@ -2,7 +2,6 @@
 
 
 #include "stack.h"
-#include "stack_log_errors.h"
 #include "log_errors.h"
 
 const int N = 50;
@@ -27,7 +26,6 @@ int main()
       return 1;
    }
 
-
    for (int count = 0; count < N; count++) 
    {
       int val = 0;
@@ -42,7 +40,6 @@ int main()
       else
       {
          Stack_push (&stack, val);
-         //stack.capacity = -1;
       }
    }
 

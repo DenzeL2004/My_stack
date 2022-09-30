@@ -83,7 +83,7 @@ enum Stack_func_err{
 #define Stack_ctor(stack, capacity)                 \
         Stack_ctor_ (stack, capacity, LOG_ARGS, fp_logs)
 
-int Stack_ctor_ (Stack *stack, unsigned long capacity, LOG_PARAMETS, FILE *fp_logs);
+int Stack_ctor_ (Stack *stack, long capacity, LOG_PARAMETS, FILE *fp_logs);
 
 #define Stack_dtor(stack)                           \
         Stack_dtor_ (stack, fp_logs)
