@@ -37,14 +37,15 @@ struct Stack
     #endif
 
     #ifdef CANARY_PROTECT
-        uint64_t canary_val_end   = CANARY_VAL;
+        uint64_t canary_val_end  = CANARY_VAL;
     #endif
 };
 
 enum Change_stack_capacity
 {
-    DECREASE = -1,
-    INCREASE =  1
+    DECREASE  = -1,
+    NO_CHANGE =  0,
+    INCREASE  =  1
 };
 
 enum Stack_err
@@ -63,11 +64,10 @@ enum Stack_err
 
 enum Stack_func_err{
     STACK_CTOR_ERR       = -1,
-    INIT_STACK_VALLS_ERR = -2,
+    SET_STACK_VALLS_ERR  = -2,
     
-    RECALLOC_STACK_ERR    = -3,
-    INCREASE_STACK_ERR   = -4,
-    DECREASE_STACK_ERR   = -5,
+    RECALLOC_STACK_ERR   = -3,
+    RECALLOC_CHECK_ERR   = -4,
     
     STACK_PUSH_ERR       = -6,
     STACK_POP_ERR        = -7,

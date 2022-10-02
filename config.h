@@ -7,6 +7,12 @@ typedef int elem_t;
 
 #define USE_LOG  //<- connect when we use logs
 
+#ifdef USE_LOG
+
+    //#define USE_DUMP_JR  //<- Concludes that everything is fine, the stack is not corrupted
+
+#endif
+
 #define DEBUG    //<- Use of protection
 
 #ifdef DEBUG
