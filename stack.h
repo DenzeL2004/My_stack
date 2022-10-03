@@ -58,9 +58,10 @@ enum Stack_err
     CAPACITY_LOWER_SIZE  = 8,
     
     CANARY_CURUPTED      = 16,
+    CANARY_PTR_CURUPTED  = 32,
     
-    HASH_DATA_CURUPTED   = 32,
-    HASH_STRUCT_CURUPTED = 64
+    HASH_DATA_CURUPTED   = 64,
+    HASH_STRUCT_CURUPTED = 128
 };
 
 enum Stack_func_err{

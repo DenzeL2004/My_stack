@@ -3,13 +3,13 @@
 
 #include <stdint.h>
 
-typedef int elem_t;
+typedef int elem;
 
 #define USE_LOG  //<- connect when we use logs
 
 #ifdef USE_LOG
 
-    //#define USE_DUMP_JR  //<- Concludes that everything is fine, the stack is not corrupted
+   // #define USE_DUMP_JR  //<- Concludes that everything is fine, the stack is not corrupted
 
 #endif
 
@@ -21,18 +21,20 @@ typedef int elem_t;
 
     #ifdef CANARY_PROTECT
         const uint64_t CANARY_VAL = 0xDEADBABEDEADBABE;
+    #else
+        const uint64_t CANARY_VAL = 0;
     #endif
 
     #define HASH           //<- use of hash protection
 
 #endif
 
-const elem_t POISON_VAL = 228;       //<- fill stack with poisonous value
+const elem POISON_VAL = 228;       //<- fill stack with poisonous value
 
-const elem_t POISON_PTR = 4242564;   //<- fill pointer with poison value
+const elem POISON_PTR = 4242564;   //<- fill pointer with poison value
 
-const elem_t NOT_ALLOC_PTR = 666666; //<- fill in the value of the pointer to which we are going to allocate dynamic memory
+const elem NOT_ALLOC_PTR = 666666; //<- fill in the value of the pointer to which we are going to allocate dynamic memory
 
-#define PRINT_TYPE "d"               //<- specifier character to print elem_t
+#define PRINT_TYPE "d"               //<- specifier character to print elem
 
 #endif

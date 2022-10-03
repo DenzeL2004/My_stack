@@ -34,10 +34,37 @@ static int Stack_info_dtor_  (Stack_info *stack_info, FILE *fp_logs);
 
 static int Stack_hash_save_         (Stack *stack, FILE *fp_logs);
 
+#define Check_hash_data(stack)                            \
+        Check_hash_data_ (stack, fp_logs)
+
+static int Check_hash_data_   (const Stack *stack, FILE *fp_logs);
+
+#define Check_hash_struct(stack)                          \
+        Check_hash_struct_ (stack, fp_logs)
+
+static int Check_hash_struct_ (const Stack *stack, FILE *fp_logs);
+
+#ifdef CANARY_PROTECT
+
+    #define Stack_canaries_set(stack)                        \
+        Stack_canaries_set_ (stack, fp_logs)
+#else
+
+    #define Stack_canaries_set(stack)                        \
+
+#endif
+
+static int Stack_canaries_set_ (Stack* stack, FILE *fp_logs);
+
 #define Stack_vals_poison_set(stack)                      \
         Stack_vals_poison_set_ (stack, fp_logs)
 
 static int Stack_vals_poison_set_   (Stack *stack, FILE *fp_logs);
+
+#define Stack_preparing(stack)                      \
+        Stack_preparing_ (stack, fp_logs)
+
+static int Stack_preparing_ (Stack *stack,  FILE *fp_logs);
 
 #define Recalloc_stack(stack)                              \
         Recalloc_stack_ (stack, fp_logs)
@@ -53,16 +80,6 @@ static int Check_resize_ (Stack *stack, FILE *fp_logs);
         Stack_resize_ (stack, param, fp_logs)
 
 static int Stack_resize_ (Stack *stack, const int param, FILE *fp_logs);
-
-#define Check_hash_data(stack)                            \
-        Check_hash_data_ (stack, fp_logs)
-
-static int Check_hash_data_   (const Stack *stack, FILE *fp_logs);
-
-#define Check_hash_struct(stack)                          \
-        Check_hash_struct_ (stack, fp_logs)
-
-static int Check_hash_struct_ (const Stack *stack, FILE *fp_logs);
 
 #define Check_stack_data_ptr(stack)                       \
         Check_stack_data_ptr_ (stack, fp_logs)
@@ -117,16 +134,9 @@ int Stack_ctor_ (Stack *stack, long capacity,
     #endif
 
     #ifdef HASH
-        Stack_hash_save (stack);
+        stack->hash_data = 0;
+        stack->hash_struct = 0;
     #endif
-
-    
-    uint64_t err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_CTOR_ERR;
-    }
 
     return 0;
 }
@@ -370,13 +380,6 @@ static int Stack_resize_ (Stack *stack, const int param, FILE *fp_logs)
 
     Stack_hash_save (stack);
 
-    err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_RESIZE_ERR;
-    }
-
     return CHANGE;
 }
 
@@ -386,20 +389,47 @@ static int Recalloc_stack_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    uint64_t err_code = Stack_check (stack);
-    if (err_code)
+    if (Check_stack_data_ptr (stack))
     {
-        Stack_dump (stack);
+        Log_report ("In recalloc BAD date pointer\n");
         return RECALLOC_STACK_ERR;
     }
-
-    stack->data = (elem*) realloc (stack->data, sizeof(elem) * stack->capacity);
     
+    #ifdef CANARY_PROTECT
+
+        int size = stack->capacity * sizeof(elem) + 2 * sizeof(uint64_t);
+
+        uint64_t *start_data =  (uint64_t*) stack->data - 1;
+
+        elem *data_ptr = (elem*) realloc(start_data, size * sizeof(char));
+    
+    #else
+
+        elem *data_ptr = (elem*) realloc (stack->data, sizeof(elem) * stack->capacity);
+    
+    #endif
+
+    #ifdef CANARY_PROTECT
+
+        stack->data = (elem*) ((char*) data_ptr + sizeof(uint64_t));
+        
+        Stack_canaries_set (stack);
+
+    #else
+
+        stack->data = data_ptr;
+    
+    #endif
+
     Stack_vals_poison_set (stack);
 
-    Stack_hash_save (stack);
+    #ifdef HASH
 
-    err_code = Stack_check (stack);
+        Stack_hash_save (stack);
+    
+    #endif
+    
+    uint64_t err_code = Stack_check (stack);
     if (err_code)
     {
         Stack_dump (stack);
@@ -411,19 +441,73 @@ static int Recalloc_stack_ (Stack *stack, FILE *fp_logs)
 
 //=======================================================================================================
 
+static int Stack_canaries_set_ (Stack* stack, FILE *fp_logs) 
+ {
+    assert (stack != nullptr && "stack is nullptr");
+
+    uint64_t *canary_ptr = (uint64_t*) stack->data - 1;
+
+    *canary_ptr = CANARY_VAL;
+
+    canary_ptr = (uint64_t*) ((char*) stack->data + stack->capacity * sizeof(elem));
+
+    *canary_ptr = CANARY_VAL;
+
+    return 0;
+}
+
+//=======================================================================================================
+
+static int Stack_preparing_ (Stack *stack,  FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+    
+    #ifdef CANARY_PROTECT
+
+        int size = (stack->capacity * sizeof (elem)) + 2 * sizeof (uint64_t);
+
+        elem *data_ptr = (elem*) calloc(size, sizeof (char));
+
+    #else 
+
+        elem *data_ptr = (elem*)calloc(stack->capacity, sizeof (elem));
+    
+    #endif
+
+    #ifdef CANARY_PROTECT
+
+        char* begin_data_ptr = (char*) data_ptr + sizeof (uint64_t);
+
+        stack->data = (elem*) begin_data_ptr;
+
+        Stack_canaries_set (stack);
+    
+    #else    
+    
+        stack->data = data_ptr;
+    
+    #endif
+        
+    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
+
+    Stack_vals_poison_set (stack);
+
+    #ifdef HASH
+        Stack_hash_save (stack);
+    #endif
+
+    return 0;
+}
+
+//=======================================================================================================
+
 int Stack_push_ (Stack *stack, elem val, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
     
     if (stack->data == (elem*) NOT_ALLOC_PTR)
     {
-        stack->data = (elem*) calloc (stack->capacity, sizeof (elem));
-        
-        if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
-
-        Stack_vals_poison_set (stack);
-
-        Stack_hash_save (stack);
+        Stack_preparing (stack);
     }
 
     if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
@@ -499,6 +583,7 @@ int Stack_pop_ (Stack *stack, elem *val, FILE *fp_logs)
     {
         case CHANGE:
             Recalloc_stack (stack);
+            break;
         
         case NO_CHANGE:
             break;
@@ -554,13 +639,25 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
     fprintf (fp_logs, "Stack capacity  = %ld\n",  stack->capacity);
 
     #ifdef CANARY_PROTECT
-        fprintf (fp_logs, "Stack canary val begin = 0x%lluX\n", stack->canary_val_begin);
-        fprintf (fp_logs, "Stack canary val end   = 0x%lluX\n", stack->canary_val_end);
+
+        fprintf (fp_logs, "\nStack canary val begin = %I64X\n", stack->canary_val_begin);
+        fprintf (fp_logs, "Stack canary val end   = %I64X\n",   stack->canary_val_end);
+
+        if (!(err_code & BAD_DATA_PTR))
+        {
+            uint64_t *canary_ptr_begin = (uint64_t*) stack->data - 1;
+
+            uint64_t *canary_ptr_end   = (uint64_t*) ((char*) stack->data + stack->capacity * sizeof(elem));
+
+            fprintf (fp_logs, "\nCanary data ptr begin = %I64X\n", *canary_ptr_begin);
+            fprintf (fp_logs, "Canary data ptr end   = %I64X\n",   *canary_ptr_end); 
+        }
+
     #endif
 
     #ifdef HASH 
-        fprintf (fp_logs, "Stack hash data     = %llu\n", stack->hash_data);
-        fprintf (fp_logs, "Stack hash struct   = %llu\n", stack->hash_struct);
+        fprintf (fp_logs, "\nStack hash data     = %I64u\n", stack->hash_data);
+        fprintf (fp_logs, "Stack hash struct   = %I64u\n", stack->hash_struct);
     #endif
 
     fprintf (fp_logs, "\n");
@@ -573,7 +670,8 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
 
     
     #ifdef CANARY_PROTECT   
-        if (err_code & CANARY_CURUPTED) fprintf (fp_logs, "stack canary_begin is currupted.\n");
+        if (err_code & CANARY_CURUPTED)     fprintf (fp_logs, "stack canary is currupted.\n");
+        if (err_code & CANARY_PTR_CURUPTED) fprintf (fp_logs, "data canary is currupted.\n");
     #endif
 
     #ifdef HASH 
@@ -589,9 +687,11 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
         for (int id_elem = 0; id_elem < stack->capacity; id_elem++)
         {
             if (id_elem < stack->size_data)
-                fprintf (fp_logs, "%5d. *[%" PRINT_TYPE "]\n", id_elem, stack->data[id_elem]);
-            else
-                fprintf (fp_logs, "%5d.  [%" PRINT_TYPE "] is POISON\n", id_elem, stack->data[id_elem]);
+                fprintf (fp_logs, "%5d. *[%" PRINT_TYPE "]\n", 
+                            id_elem, stack->data[id_elem]);
+            else    
+                fprintf (fp_logs, "%5d.  [%" PRINT_TYPE "] is POISON\n", 
+                                    id_elem, stack->data[id_elem]);
         }
     }
 
@@ -602,11 +702,10 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
 
 //=======================================================================================================
 
-
 static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
-    
+
     if (stack->data == nullptr)
     {
         Log_report ("The user tried to use nullptr. Data is nullptr\n");
@@ -651,8 +750,20 @@ static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
     if (stack->capacity < stack->size_data) err_code |= CAPACITY_LOWER_SIZE;
     
     #ifdef CANARY_PROTECT
+
         if (stack->canary_val_begin != CANARY_VAL || stack->canary_val_end != CANARY_VAL)
             err_code |= CANARY_CURUPTED;
+
+        if (!Check_stack_data_ptr (stack))
+        {
+            uint64_t *canary_ptr_begin = (uint64_t*) stack->data - 1;
+
+            uint64_t *canary_ptr_end   = (uint64_t*) ((char*) stack->data + stack->capacity * sizeof(elem));
+
+            if (*canary_ptr_begin != CANARY_VAL || 
+                *canary_ptr_end   != CANARY_VAL)  err_code |= CANARY_PTR_CURUPTED;  
+        }
+
     #endif
 
     #ifdef HASH
@@ -678,7 +789,7 @@ int Stack_dump_jr_ (Stack *stack, const char* file_name,
 
     fprintf (fp_logs, "OK:\n");
 
-    fprintf (fp_logs, "was launched from file: %s \nfunc: %s \nline: %d", LOG_VAR);
+    fprintf (fp_logs, "was launched from file: %s \nfunc: %s \nline: %d\n", LOG_VAR);
 
     fprintf (fp_logs, "Check_stack did't detect any errors in the stack structure\n");
 
@@ -688,13 +799,20 @@ int Stack_dump_jr_ (Stack *stack, const char* file_name,
     fprintf (fp_logs, "Stack capacity  = %ld\n",  stack->capacity);
 
     #ifdef CANARY_PROTECT
-        fprintf (fp_logs, "Stack canary val begin = 0x%lluX\n", stack->canary_val_begin);
-        fprintf (fp_logs, "Stack canary val end   = 0x%lluX\n", stack->canary_val_end);
+        fprintf (fp_logs, "\nStack canary val begin = %I64X\n", stack->canary_val_begin);
+        fprintf (fp_logs, "Stack canary val end   = %I64X\n", stack->canary_val_end);
+
+        uint64_t *canary_ptr_begin = (uint64_t*) stack->data - 1;
+
+        uint64_t *canary_ptr_end   = (uint64_t*) ((char*) stack->data + stack->capacity * sizeof(elem));
+
+        fprintf (fp_logs, "\nCanary data ptr begin = %I64X\n", *canary_ptr_begin);
+        fprintf (fp_logs, "Canary data ptr end   = %I64X\n",   *canary_ptr_end);
     #endif
 
     #ifdef HASH 
-        fprintf (fp_logs, "Stack hash data     = %llu\n", stack->hash_data);
-        fprintf (fp_logs, "Stack hash struct   = %llu\n", stack->canary_val_end);
+        fprintf (fp_logs, "\nStack hash data     = %I64u\n", stack->hash_data);
+        fprintf (fp_logs, "Stack hash struct   = %I64u\n", stack->hash_struct);
     #endif
 
     return 0;
