@@ -24,7 +24,7 @@ struct Stack
         uint64_t canary_val_begin = CANARY_VAL;
     #endif
 
-    elem_t *data = nullptr;
+    elem *data = nullptr;
 
     long size_data = 0;
     long capacity  = 0;
@@ -45,7 +45,8 @@ enum Change_stack_capacity
 {
     DECREASE  = -1,
     NO_CHANGE =  0,
-    INCREASE  =  1
+    INCREASE  =  1,
+    CHANGE    =  2
 };
 
 enum Stack_err
@@ -67,7 +68,8 @@ enum Stack_func_err{
     SET_STACK_VALLS_ERR  = -2,
     
     RECALLOC_STACK_ERR   = -3,
-    RECALLOC_CHECK_ERR   = -4,
+    RESIZE_CHECK_ERR     = -4,
+    STACK_RESIZE_ERR     = -5,
     
     STACK_PUSH_ERR       = -6,
     STACK_POP_ERR        = -7,
@@ -93,12 +95,12 @@ int Stack_dtor_ (Stack *stack, FILE *fp_logs);
 #define Stack_push(stack, val)                      \
         Stack_push_ (stack, val, fp_logs)
 
-int Stack_push_ (Stack *stack, elem_t  val, FILE *fp_logs);
+int Stack_push_ (Stack *stack, elem  val, FILE *fp_logs);
 
 #define Stack_pop(stack, val)                       \
         Stack_pop_ (stack, val, fp_logs)
 
-int Stack_pop_  (Stack *stack, elem_t *val, FILE *fp_logs);
+int Stack_pop_  (Stack *stack, elem *val, FILE *fp_logs);
 
 #ifdef USE_LOG
 

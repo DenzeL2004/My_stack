@@ -39,15 +39,20 @@ static int Stack_hash_save_         (Stack *stack, FILE *fp_logs);
 
 static int Stack_vals_poison_set_   (Stack *stack, FILE *fp_logs);
 
-#define Recalloc_stack(stack, param)                       \
-        Recalloc_stack_ (stack, param, fp_logs)
+#define Recalloc_stack(stack)                              \
+        Recalloc_stack_ (stack, fp_logs)
 
-static int Recalloc_stack_ (Stack *stack, const int param, FILE *fp_logs);
+static int Recalloc_stack_ (Stack *stack, FILE *fp_logs);
 
-#define Check_recalloc(stack)                              \
-        Check_recalloc_ (stack, fp_logs)
+#define Check_resize(stack)                              \
+        Check_resize_ (stack, fp_logs)
 
-static int Check_recalloc_ (Stack *stack, FILE *fp_logs);
+static int Check_resize_ (Stack *stack, FILE *fp_logs);
+
+#define Stack_resize(stack, param)                              \
+        Stack_resize_ (stack, param, fp_logs)
+
+static int Stack_resize_ (Stack *stack, const int param, FILE *fp_logs);
 
 #define Check_hash_data(stack)                            \
         Check_hash_data_ (stack, fp_logs)
@@ -92,7 +97,7 @@ int Stack_ctor_ (Stack *stack, long capacity,
     stack->stack_info = {};
     Stack_info_ctor (&stack->stack_info);
 
-    stack->data = (elem_t*) NOT_ALLOC_PTR;
+    stack->data = (elem*) NOT_ALLOC_PTR;
 
     stack->size_data = 0;
 
@@ -132,7 +137,7 @@ int Stack_dtor_ (Stack *stack, FILE* fp_logs)
 {   
     assert (stack != nullptr && "stack is nullptr");
 
-    if (stack->data != (elem_t*) NOT_ALLOC_PTR)
+    if (stack->data != (elem*) NOT_ALLOC_PTR)
     {
         uint64_t err_code = Stack_check (stack);
         if (Stack_check (stack))
@@ -144,10 +149,10 @@ int Stack_dtor_ (Stack *stack, FILE* fp_logs)
 
     Stack_vals_poison_set (stack);
 
-    if (stack->data != (elem_t*) NOT_ALLOC_PTR)
+    if (stack->data != (elem*) NOT_ALLOC_PTR)
         free (stack->data);
     
-    stack->data = (elem_t*) POISON_PTR;
+    stack->data = (elem*) POISON_PTR;
 
     stack->size_data = POISON_VAL;
     stack->capacity  = POISON_VAL;
@@ -222,7 +227,7 @@ static int Stack_hash_save_ (Stack *stack, FILE *fp_logs)
         return STACK_SAVE_HASH_ERR;
     }
 
-    size_t size_data = stack->capacity * sizeof (elem_t);
+    size_t size_data = stack->capacity * sizeof (elem);
 
     stack->hash_data = Get_hash ((char*) stack->data, size_data);
 
@@ -239,10 +244,10 @@ static int Check_hash_data_ (const Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    if (stack->data != nullptr && stack->data != (elem_t*) POISON_PTR &&
+    if (stack->data != nullptr && stack->data != (elem*) POISON_PTR &&
         stack->capacity > 0) 
     {
-        int size_data = stack->capacity * sizeof (elem_t);
+        int size_data = stack->capacity * sizeof (elem);
 
         uint64_t hash = Get_hash ((char*) stack->data, (unsigned int) size_data);
 
@@ -297,7 +302,7 @@ static int Stack_vals_poison_set_ (Stack *stack, FILE *fp_logs)
         return SET_STACK_VALLS_ERR;
     }
 
-    if (stack->data == (elem_t*) NOT_ALLOC_PTR)
+    if (stack->data == (elem*) NOT_ALLOC_PTR)
     {
         Log_report ("Memory has not been allocated for subsequent stack filling\n");
         return SET_STACK_VALLS_ERR;
@@ -311,7 +316,73 @@ static int Stack_vals_poison_set_ (Stack *stack, FILE *fp_logs)
 
 //=======================================================================================================
 
-static int Recalloc_stack_(Stack *stack, const int param, FILE *fp_logs) 
+static int Check_resize_ (Stack *stack, FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return RESIZE_CHECK_ERR;
+    }
+
+    if (stack->capacity / 4 <= stack->size_data && 
+        stack->size_data + 1 < stack->capacity / 2) return DECREASE;
+
+    if (stack->capacity == stack->size_data)        return INCREASE;
+
+    return NO_CHANGE;
+}
+
+//=======================================================================================================
+
+static int Stack_resize_ (Stack *stack, const int param, FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return STACK_RESIZE_ERR;
+    }
+
+    switch (param)
+    {
+        case INCREASE:
+            stack->capacity *= 2;
+            break;
+
+        case DECREASE:
+            stack->capacity /= 2;
+            break;
+
+        case NO_CHANGE:
+            return NO_CHANGE;
+        
+        default:
+            err_code = Stack_check (stack);
+            Stack_dump (stack);
+            return STACK_RESIZE_ERR;
+            
+    }
+
+    Stack_hash_save (stack);
+
+    err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return STACK_RESIZE_ERR;
+    }
+
+    return CHANGE;
+}
+
+//=======================================================================================================
+
+static int Recalloc_stack_ (Stack *stack, FILE *fp_logs) 
 {
     assert (stack != nullptr && "stack is nullptr");
 
@@ -322,13 +393,7 @@ static int Recalloc_stack_(Stack *stack, const int param, FILE *fp_logs)
         return RECALLOC_STACK_ERR;
     }
 
-    if (param == NO_CHANGE)
-        return 0;
-
-    if (param == INCREASE) stack->capacity *= 2;
-    if (param == DECREASE) stack->capacity /= 2;
-
-    stack->data = (elem_t*) realloc (stack->data, sizeof(elem_t)*stack->capacity);
+    stack->data = (elem*) realloc (stack->data, sizeof(elem) * stack->capacity);
     
     Stack_vals_poison_set (stack);
 
@@ -346,34 +411,13 @@ static int Recalloc_stack_(Stack *stack, const int param, FILE *fp_logs)
 
 //=======================================================================================================
 
-static int Check_recalloc_ (Stack *stack, FILE *fp_logs)
-{
-    assert (stack != nullptr && "stack is nullptr");
-
-    uint64_t err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return RECALLOC_CHECK_ERR;
-    }
-
-    if (stack->capacity / 4 <= stack->size_data && 
-        stack->size_data + 1 < stack->capacity / 2) return DECREASE;
-
-    if (stack->capacity == stack->size_data)      return INCREASE;
-
-    return NO_CHANGE;
-}
-
-//=======================================================================================================
-
-int Stack_push_ (Stack *stack, elem_t val, FILE *fp_logs)
+int Stack_push_ (Stack *stack, elem val, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
     
-    if (stack->data == (elem_t*) NOT_ALLOC_PTR)
+    if (stack->data == (elem*) NOT_ALLOC_PTR)
     {
-        stack->data = (elem_t*) calloc (stack->capacity, sizeof (elem_t));
+        stack->data = (elem*) calloc (stack->capacity, sizeof (elem));
         
         if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
@@ -391,18 +435,25 @@ int Stack_push_ (Stack *stack, elem_t val, FILE *fp_logs)
         return STACK_PUSH_ERR;
     }
 
-    if (!Recalloc_stack(stack, Check_recalloc (stack))){
-        stack->data[stack->size_data++] = val;
-    }
-    else
+    int ver_status = Stack_resize (stack, Check_resize (stack));
+    switch (ver_status)
     {
-        Log_report ("In push recalloc didn't work correctly\n");
+        case CHANGE:
+            Recalloc_stack (stack);
         
-        err_code = Stack_check (stack);
-        Stack_dump (stack);
-        
-        return STACK_PUSH_ERR;
+        case NO_CHANGE:
+            break;
+
+        default:
+            Log_report ("In push recalloc didn't work correctly\n");
+            
+            err_code = Stack_check (stack);
+            Stack_dump (stack);
+            
+            return STACK_PUSH_ERR;
     }
+
+    stack->data[stack->size_data++] = val;
 
     Stack_hash_save (stack);
 
@@ -418,13 +469,13 @@ int Stack_push_ (Stack *stack, elem_t val, FILE *fp_logs)
 
 //=======================================================================================================
 
-int Stack_pop_ (Stack *stack, elem_t *val, FILE *fp_logs)
+int Stack_pop_ (Stack *stack, elem *val, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
     if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
 
-    if (stack->data == (elem_t*) NOT_ALLOC_PTR)
+    if (stack->data == (elem*) NOT_ALLOC_PTR)
     {
         printf ("Size is zero, you can't use Stack_pop\n");
         return 0;
@@ -443,23 +494,27 @@ int Stack_pop_ (Stack *stack, elem_t *val, FILE *fp_logs)
         return 0;
     }
 
-    if (!Recalloc_stack(stack, Check_recalloc (stack)))
+    int ver_status = Stack_resize (stack, Check_resize (stack));
+    switch (ver_status)
     {
-        *val = stack->data[stack->size_data - 1];
-
-        stack->data[stack->size_data - 1] = POISON_VAL;
-
-        stack->size_data--;
-    }
-    else
-    {
-        Log_report ("In pop recalloc didn't work correctly\n");
+        case CHANGE:
+            Recalloc_stack (stack);
         
-        err_code = Stack_check (stack);
-        Stack_dump (stack);
-        
-        return STACK_POP_ERR;
+        case NO_CHANGE:
+            break;
+
+        default:
+            Log_report ("In pop recalloc didn't work correctly\n");
+            
+            err_code = Stack_check (stack);
+            Stack_dump (stack);
+            
+            return STACK_PUSH_ERR;
     }
+
+    *val = stack->data[stack->size_data - 1];
+    stack->data[stack->size_data - 1] = POISON_VAL;
+    stack->size_data--;
 
     Stack_hash_save (stack);
 
@@ -558,22 +613,22 @@ static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs)
         return BAD_DATA_PTR;
     }
 
-    if (stack->data == (elem_t*) POISON_PTR)
+    if (stack->data == (elem*) POISON_PTR)
     {
         Log_report ("The user tried to use a pointer with a pison value\n");
         return BAD_DATA_PTR;
     }
 
-    if (stack->data == (elem_t*) NOT_ALLOC_PTR && 
+    if (stack->data == (elem*) NOT_ALLOC_PTR && 
         stack->capacity == 0 && stack->size_data == 0)
     {
             return 0;
     }
 
-    if (stack->data == (elem_t*) NOT_ALLOC_PTR && 
+    if (stack->data == (elem*) NOT_ALLOC_PTR && 
         (stack->size_data != 0))
     {
-        Log_report ("The user tried to use a pointer which has't yet been allocateв\n");
+        Log_report ("The user tried to use a pointer which has't yet been allocated\n");
         return BAD_DATA_PTR;
     }
 
