@@ -160,8 +160,14 @@ int Stack_dtor_ (Stack *stack, FILE* fp_logs)
     Stack_vals_poison_set (stack);
 
     if (stack->data != (elem*) NOT_ALLOC_PTR)
-        free (stack->data);
-    
+    {
+        #ifdef CANARY_PROTECT
+            free ((uint64_t*) stack->data - 1);
+        #else
+            free (stack->data);
+        #endif
+    }
+
     stack->data = (elem*) POISON_PTR;
 
     stack->size_data = POISON_VAL;
@@ -280,13 +286,13 @@ static int Check_hash_struct_ (const Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
 
-    int size_struct = sizeof (*stack) - 2 * sizeof (uint64_t);
+    unsigned int size_struct = sizeof (*stack) - 2 * sizeof (uint64_t);
 
     #ifdef CANARY_PROTECT
         size_struct -= sizeof (uint64_t);
     #endif
 
-    uint64_t hash = Get_hash ((char*) stack, (unsigned int) size_struct);
+    uint64_t hash = Get_hash ((char*) stack, size_struct);
 
     if (hash == stack->hash_struct) 
         return 0;   
