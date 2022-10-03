@@ -97,7 +97,7 @@ static int Check_stack_data_ptr_ (Stack *stack, FILE *fp_logs);
 
 #endif
 
-int Stack_dump_jr_ (Stack *stack, LOG_PARAMETS, FILE *fp_logs);
+static int Stack_dump_jr_ (Stack *stack, LOG_PARAMETS, FILE *fp_logs);
 
 #define Stack_check(stack)                                \
         Stack_check_ (stack, fp_logs)
@@ -118,9 +118,9 @@ int Stack_ctor_ (Stack *stack, long capacity,
 
     stack->size_data = 0;
 
-    if (capacity < 0)
+    if (capacity <= 0)
     {
-        printf ("You can't use a negative number for capacity\n");
+        printf ("You can't use number lower zero\n");
 
         Log_report ("The user tried to assign a negative number to the size\n");
         return STACK_CTOR_ERR;
@@ -332,6 +332,120 @@ static int Stack_vals_poison_set_ (Stack *stack, FILE *fp_logs)
 
 //=======================================================================================================
 
+int Stack_push_ (Stack *stack, elem val, FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+    
+    if (stack->data == (elem*) NOT_ALLOC_PTR)
+    {
+        Stack_preparing (stack);
+    }
+
+    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
+
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return STACK_PUSH_ERR;
+    }
+
+    int ver_status = Stack_resize (stack, Check_resize (stack));
+    switch (ver_status)
+    {
+        case CHANGE:
+            Recalloc_stack (stack);
+        
+        case NO_CHANGE:
+            break;
+
+        default:
+            Log_report ("In push recalloc didn't work correctly\n");
+            
+            err_code = Stack_check (stack);
+            Stack_dump (stack);
+            
+            return STACK_PUSH_ERR;
+    }
+
+    stack->data[stack->size_data++] = val;
+
+    Stack_hash_save (stack);
+
+    err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return STACK_PUSH_ERR;
+    }
+
+    return 0;
+}
+
+//=======================================================================================================
+
+int Stack_pop_ (Stack *stack, elem *val, FILE *fp_logs)
+{
+    assert (stack != nullptr && "stack is nullptr");
+
+    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
+
+    if (stack->data == (elem*) NOT_ALLOC_PTR)
+    {
+        printf ("Size is zero, you can't use Stack_pop\n");
+        return 0;
+    }
+
+    uint64_t err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return STACK_POP_ERR;
+    }
+
+    if (stack->size_data == 0)
+    {
+        printf ("Size is zero, you can't use Stack_pop\n");
+        return 0;
+    }
+
+    int ver_status = Stack_resize (stack, Check_resize (stack));
+    switch (ver_status)
+    {
+        case CHANGE:
+            Recalloc_stack (stack);
+            break;
+        
+        case NO_CHANGE:
+            break;
+
+        default:
+            Log_report ("In pop recalloc didn't work correctly\n");
+            
+            err_code = Stack_check (stack);
+            Stack_dump (stack);
+            
+            return STACK_PUSH_ERR;
+    }
+
+    *val = stack->data[stack->size_data - 1];
+    stack->data[stack->size_data - 1] = POISON_VAL;
+    stack->size_data--;
+
+    Stack_hash_save (stack);
+
+    err_code = Stack_check (stack);
+    if (err_code)
+    {
+        Stack_dump (stack);
+        return STACK_POP_ERR;
+    }
+
+    return 0;
+}
+
+//=======================================================================================================
+
 static int Check_resize_ (Stack *stack, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
@@ -507,120 +621,6 @@ static int Stack_preparing_ (Stack *stack,  FILE *fp_logs)
 
 //=======================================================================================================
 
-int Stack_push_ (Stack *stack, elem val, FILE *fp_logs)
-{
-    assert (stack != nullptr && "stack is nullptr");
-    
-    if (stack->data == (elem*) NOT_ALLOC_PTR)
-    {
-        Stack_preparing (stack);
-    }
-
-    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
-
-    uint64_t err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_PUSH_ERR;
-    }
-
-    int ver_status = Stack_resize (stack, Check_resize (stack));
-    switch (ver_status)
-    {
-        case CHANGE:
-            Recalloc_stack (stack);
-        
-        case NO_CHANGE:
-            break;
-
-        default:
-            Log_report ("In push recalloc didn't work correctly\n");
-            
-            err_code = Stack_check (stack);
-            Stack_dump (stack);
-            
-            return STACK_PUSH_ERR;
-    }
-
-    stack->data[stack->size_data++] = val;
-
-    Stack_hash_save (stack);
-
-    err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_PUSH_ERR;
-    }
-
-    return 0;
-}
-
-//=======================================================================================================
-
-int Stack_pop_ (Stack *stack, elem *val, FILE *fp_logs)
-{
-    assert (stack != nullptr && "stack is nullptr");
-
-    if (Check_stack_data_ptr (stack)) return STACK_PUSH_ERR;
-
-    if (stack->data == (elem*) NOT_ALLOC_PTR)
-    {
-        printf ("Size is zero, you can't use Stack_pop\n");
-        return 0;
-    }
-
-    uint64_t err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_POP_ERR;
-    }
-
-    if (stack->size_data == 0)
-    {
-        printf ("Size is zero, you can't use Stack_pop\n");
-        return 0;
-    }
-
-    int ver_status = Stack_resize (stack, Check_resize (stack));
-    switch (ver_status)
-    {
-        case CHANGE:
-            Recalloc_stack (stack);
-            break;
-        
-        case NO_CHANGE:
-            break;
-
-        default:
-            Log_report ("In pop recalloc didn't work correctly\n");
-            
-            err_code = Stack_check (stack);
-            Stack_dump (stack);
-            
-            return STACK_PUSH_ERR;
-    }
-
-    *val = stack->data[stack->size_data - 1];
-    stack->data[stack->size_data - 1] = POISON_VAL;
-    stack->size_data--;
-
-    Stack_hash_save (stack);
-
-    err_code = Stack_check (stack);
-    if (err_code)
-    {
-        Stack_dump (stack);
-        return STACK_POP_ERR;
-    }
-
-    return 0;
-}
-
-//=======================================================================================================
-
 int Stack_dump_ (Stack *stack, uint64_t err_code,
                  const char* file_name, const char* func_name, int line, FILE *fp_logs)
 {
@@ -662,8 +662,10 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
     #endif
 
     #ifdef HASH 
+
         fprintf (fp_logs, "\nStack hash data     = %I64u\n", stack->hash_data);
         fprintf (fp_logs, "Stack hash struct   = %I64u\n", stack->hash_struct);
+    
     #endif
 
     fprintf (fp_logs, "\n");
@@ -674,15 +676,18 @@ int Stack_dump_ (Stack *stack, uint64_t err_code,
     if (err_code & CAPACITY_LOWER_ZERO)  fprintf (fp_logs, "stack capacity is a negative number.\n");
     if (err_code & CAPACITY_LOWER_SIZE)  fprintf (fp_logs, "stack capacity is lower size_data:\n");
 
-    
     #ifdef CANARY_PROTECT   
+
         if (err_code & CANARY_CURUPTED)     fprintf (fp_logs, "stack canary is currupted.\n");
         if (err_code & CANARY_PTR_CURUPTED) fprintf (fp_logs, "data canary is currupted.\n");
+    
     #endif
 
-    #ifdef HASH 
+    #ifdef HASH
+
         if (err_code & HASH_DATA_CURUPTED)   fprintf (fp_logs, "Hash value did not match\n");
         if (err_code & HASH_STRUCT_CURUPTED) fprintf (fp_logs, "Hash Struct did not match\n");
+    
     #endif
 
     fprintf (fp_logs, "\n");
@@ -773,10 +778,12 @@ static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
     #endif
 
     #ifdef HASH
+
         if (!(err_code & CAPACITY_LOWER_ZERO))
             if (Check_hash_data (stack))   err_code |= HASH_DATA_CURUPTED;
 
         if (Check_hash_struct (stack)) err_code |= HASH_STRUCT_CURUPTED;
+    
     #endif
 
     if (!err_code) Stack_dump_jr (stack);
@@ -786,7 +793,7 @@ static uint64_t Stack_check_ (Stack *stack, FILE *fp_logs)
 
 //=======================================================================================================
 
-int Stack_dump_jr_ (Stack *stack, const char* file_name, 
+static int Stack_dump_jr_ (Stack *stack, const char* file_name, 
                                   const char* func_name, const int line, FILE *fp_logs)
 {
     assert (stack != nullptr && "stack is nullptr");
@@ -821,9 +828,9 @@ int Stack_dump_jr_ (Stack *stack, const char* file_name,
         fprintf (fp_logs, "Stack hash struct   = %I64u\n", stack->hash_struct);
     #endif
 
-    return 0;
-
     fprintf (fp_logs, "=================================================\n\n");
+    
+    return 0;
 }
 
 //=======================================================================================================
